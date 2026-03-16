@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Container from "./Container";
 import { Menu, XIcon } from "lucide-react";
 import { useState } from "react";
 import clsx from "clsx";
@@ -37,22 +36,22 @@ export default function Header() {
       setMenuOpen(false);
     }
   };
-
   return (
     <header
-      className="nav w-full top-0 sticky
+      className="w-full top-0 sticky
       left-0 right-0 
-    z-1000"
+    z-1000 bg-amber-100 shadow-2xs"
     >
-      <div className="py-[24px]">
+      <div className="py-6">
         <div
-          className="px-[16px] md:px-[35px] max-w-[1000px]  
+          className="px-4 md:px-8.75 max-w-250px  
         m-auto"
         >
           <nav
             className="md:static flex 
         md:flex-row
-        justify-between items-center ml-[15px] mr-[15px] text-[#353140]"
+        justify-between items-center ml-3.75 mr-3.75 
+        text-[text-[#2E3E57]]"
           >
             <Link href="/">
               <Logo />
@@ -62,19 +61,19 @@ export default function Header() {
               className={clsx(
                 "flex flex-col md:flex-row translate-x-0 items-center gap-8",
                 {
-                  "flex-col bg-neutral-700 fixed top-0 p-8 right-0 bottom-0 w-1/2 transform transition-transform duration-300 ease-in-out translate-x-0":
+                  "flex-col  fixed top-0 p-8 right-0 bottom-0 w-1/2 transform transition-transform duration-300 ease-in-out translate-x-0":
                     menuOpen,
-                  "bg-neutral-700 fixed top-0 right-0 bottom-0 p-8  duration-300 ease-in-out translate-x-full":
+                  "fixed top-0 right-0 bottom-0 p-8  duration-300 ease-in-out translate-x-full":
                     !menuOpen && isMobile,
                 },
               )}
             >
               {navLinks.map((link) => (
-                <li key={link.name} className="py-[25px] px-[14px]">
+                <li key={link.name} className="py-6.25 px-3.5">
                   <Link
                     onClick={closeMenuOnMobile}
                     href={link.path}
-                    className={`font-semibold
+                    className={`font-semibold hover:text-[#A8922D]
                       pathname === link.path ? "text-sky-500" : "text-secondary"`}
                   >
                     {link.name}

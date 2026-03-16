@@ -7,34 +7,14 @@ import { H1 } from "@/components/layout/H1";
 const ContactPage = () => {
   return (
     <main className="">
-      {/*   <section
-        className="relative min-h-screen
-      flex flex-col lg:flex-row justify-center 
-      items-center"
-      >
-       <div className="absolute inset-0">
-          <Image
-              src="/images/5899035.jpg"
-              fill
-              priority
-              alt=""
-              className="w-full h-full object-cover"
-            /> 
-
-          <div
-            className="absolute inset-0 bg-gradient-to-b 
-          from-black/90 to-black/30 backdrop-brightness-95"
-          />
-        </div>
-      </section> */}
       <div className="bg-[#4A148C] border">
         <section
-          className="relative relative 
+          className="relative
             text-center"
         >
           <Stack
             size="md"
-            className="max-w-2xl 
+            className="max-w-2xl
             mx-auto text-white my-8"
           >
             <h1
@@ -56,17 +36,15 @@ const ContactPage = () => {
           </Stack>
         </section>
 
-        {/* Bottom Half – Form Section */}
-        {/* ========================= */}
         <div>
           <h2 className="text-left">Contact</h2>
 
           <form
-            className="relative w-[600px] mx-auto
+            className="relative w-150 mx-auto
                flex flex-col items-center gap-5"
           >
             <div
-              className="flex flex-col w-[90%] 
+              className="flex flex-col w-[90%]
             m-auto"
               id="name"
             >
@@ -110,14 +88,14 @@ const ContactPage = () => {
               </label>
 
               <textarea
-                className="bg-white py-0 px-[10px]"
+                className="bg-white py-0 px-2.5"
                 id="msg"
                 name="user_message"
               ></textarea>
             </div>
 
             <div
-              className="flex w-full justify-center 
+              className="flex w-full justify-center
             items-center p-4"
             >
               <Button className="bg-white text-black" type="submit">

@@ -4,7 +4,7 @@ const classId = uuidv4();
 
 export const classes = [
   {
-    slug: "/sunhouse",
+    slug: "/class",
     title: "Biodanza Workshop",
 
     location: "Sardis Chapel, Pontypridd",
