@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { useEntranceAnimation } from "@/hooks/useEntranceAnimation";
 import {
   Music4,
   Waves,
@@ -276,6 +277,8 @@ export const Classes = () => {
   const allDates = term.dates;
   const nextDate = getNextDate(allDates);
 
+  const { fadeUp } = useEntranceAnimation();
+
   return (
     <div className="min-h-screen">
       <StructuredData term={term} title={featuredClass.title} />
@@ -283,11 +286,16 @@ export const Classes = () => {
       <section className="" aria-label="Classes hero">
         <div className="max-w-275 mx-auto px-5 sm:px-8 pt-14 pb-16 grid grid-cols-1 lg:grid-cols-[55%_45%] gap-12 lg:gap-8 items-center">
           <div>
-            <SectionEyebrow text="Biodanza classes · Sardis Chapel, Pontypridd" />
+            <div style={fadeUp(200)}>
+              <SectionEyebrow text="Biodanza classes · Sardis Chapel, Pontypridd" />
+            </div>
 
             <h1
               className="text-[clamp(2.6rem,5.5vw,4.2rem)] leading-[1.08] tracking-tight text-[#1e2a3a] mt-3 mb-5 max-w-[14ch]"
-              style={{ fontWeight: 300 }}
+              style={{
+                fontWeight: 400,
+                ...fadeUp(350),
+              }}
             >
               Move without judgement.{" "}
               <em className="text-rose-500" style={{ fontStyle: "italic" }}>
@@ -295,7 +303,10 @@ export const Classes = () => {
               </em>
             </h1>
 
-            <p className="text-[1rem] max-w-[40ch] text-[#1e2a3a] leading-relaxed mb-8">
+            <p
+              style={fadeUp(550)}
+              className="text-[1rem] max-w-[40ch] text-[#1e2a3a] leading-relaxed mb-8"
+            >
               A fortnightly Sunday class in Pontypridd for all levels — no
               experience, no performance, no judgement. Just music, movement and
               genuine human connection.
@@ -315,7 +326,7 @@ export const Classes = () => {
               </div>
             )}
 
-            <div className="flex flex-wrap gap-3 mb-10">
+            <div style={fadeUp(700)} className="flex flex-wrap gap-3 mb-10">
               <a
                 href="mailto:biodanzawithcaroline@gmail.com?subject=Class%20booking%20enquiry"
                 className="inline-flex items-center gap-2 bg-[#1e2a3a] text-white text-[0.9375rem] font-medium px-6 py-3 rounded-full hover:bg-[#2d3f55] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1e2a3a] focus-visible:ring-offset-2 focus-visible:ring-offset-[#f5ede8]"
@@ -333,6 +344,7 @@ export const Classes = () => {
             </div>
 
             <ul
+              style={fadeUp(850)}
               className="flex flex-wrap gap-x-6 gap-y-1.5 text-[0.8125rem] text-[#1e2a3a]/70"
               aria-label="Class credentials"
             >
@@ -372,6 +384,7 @@ export const Classes = () => {
             </div>
 
             <div
+              style={fadeUp(850)}
               className="absolute -bottom-3 -left-6 bg-white rounded-2xl px-5 py-3 shadow-md border border-stone-100 text-center"
               aria-hidden="true"
             >

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, Fragment } from "react";
+import { useEntranceAnimation } from "@/hooks/useEntranceAnimation";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -19,7 +20,7 @@ import {
 } from "lucide-react";
 
 import type { LucideIcon } from "lucide-react";
-import { Diplomata } from "next/font/google";
+
 import { ButtonLink } from "./ButtonLink";
 
 const classIcons: Record<string, LucideIcon> = {
@@ -62,11 +63,6 @@ interface Testimonial {
   role: string;
 }
 
-interface FadeStyle {
-  opacity: number;
-  transform: string;
-  transition: string;
-}
 
 const stats: Stat[] = [
   { value: 3, label: "Years teaching" },
@@ -222,7 +218,7 @@ export function StatCounter({
 }
 
 const AboutPage = (): React.ReactElement => {
-  const [heroTriggered, setHeroTriggered] = useState<boolean>(false);
+  const { fadeUp } = useEntranceAnimation();
   const [statsTriggered, setStatsTriggered] = useState<boolean>(false);
 
   const [storyRef, storyVisible] = useScrollFade();
@@ -232,19 +228,9 @@ const AboutPage = (): React.ReactElement => {
   const [ctaRef, ctaVisible] = useScrollFade();
 
   useEffect(() => {
-    const t1 = setTimeout(() => setHeroTriggered(true), 100);
     const t2 = setTimeout(() => setStatsTriggered(true), 700);
-    return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
-    };
+    return () => clearTimeout(t2);
   }, []);
-
-  const fadeUp = (delay: number): FadeStyle => ({
-    opacity: heroTriggered ? 1 : 0,
-    transform: heroTriggered ? "translateY(0)" : "translateY(22px)",
-    transition: `opacity 0.7s ease ${delay}ms, transform 0.7s ease ${delay}ms`,
-  });
 
   const scrollFade = (
     visible: boolean,

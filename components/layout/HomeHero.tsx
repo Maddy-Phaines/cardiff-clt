@@ -1,15 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { SectionEyebrow } from "../ui/SectionEyebrow";
-
-interface FadeStyle {
-  opacity: number;
-  transform: string;
-  transition: string;
-}
+import { useEntranceAnimation } from "@/hooks/useEntranceAnimation";
 
 interface ProofPillProps {
   label: string;
@@ -26,33 +21,7 @@ const ProofPill: React.FC<ProofPillProps> = ({ label }) => (
 );
 
 export default function HomeHero(): React.ReactElement {
-  const [triggered, setTriggered] = useState<boolean>(false);
-  const [prefersReducedMotion, setPrefersReducedMotion] =
-    useState<boolean>(false);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setPrefersReducedMotion(mediaQuery.matches);
-    const handler = (e: MediaQueryListEvent) =>
-      setPrefersReducedMotion(e.matches);
-    mediaQuery.addEventListener("change", handler);
-    return () => mediaQuery.removeEventListener("change", handler);
-  }, []);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setTriggered(true), 100);
-    return () => clearTimeout(timer);
-  }, []);
-
-  const visible = prefersReducedMotion || triggered;
-
-  const fadeUp = (delay: number): FadeStyle => ({
-    opacity: visible ? 1 : 0,
-    transform: visible ? "translateY(0)" : "translateY(22px)",
-    transition: prefersReducedMotion
-      ? "none"
-      : `opacity 0.7s ease ${delay}ms, transform 0.7s ease ${delay}ms`,
-  });
+  const { visible, prefersReducedMotion, fadeUp } = useEntranceAnimation();
 
   const archReveal: React.CSSProperties = {
     opacity: visible ? 1 : 0,
