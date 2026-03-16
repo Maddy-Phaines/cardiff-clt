@@ -177,7 +177,7 @@ function useCountUp(
   return value;
 }
 
-function useScrollFade(): [React.RefObject<HTMLElement>, boolean] {
+function useScrollFade(): [React.RefObject<HTMLElement | null>, boolean] {
   const ref = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState<boolean>(false);
   useEffect(() => {
@@ -412,7 +412,7 @@ px-4 py-1.5 mb-6"
       </section>
 
       <section
-        ref={biodanzaRef as React.RefObject<HTMLElement>}
+        ref={biodanzaRef as React.RefObject<HTMLElement | null>}
         className="bg-[#1e2a3a] rounded-3xl mx-4 sm:mx-8 mb-20 py-16 px-6 sm:px-12"
       >
         <div className="max-w-275 mx-auto">
@@ -455,7 +455,7 @@ px-4 py-1.5 mb-6"
         </div>
       </section>
       <section
-        ref={credsRef as React.RefObject<HTMLElement>}
+        ref={credsRef as React.RefObject<HTMLElement | null>}
         className="max-w-275 mx-auto px-5 sm:px-8 py-8 mb-20"
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
@@ -540,7 +540,7 @@ px-4 py-1.5 mb-6"
         </div>
       </section>
       <section
-        ref={testiRef as React.RefObject<HTMLElement>}
+        ref={testiRef as React.RefObject<HTMLElement | null>}
         className="max-w-275 mx-auto px-5 sm:px-8 mb-20"
       >
         <SectionEyebrow text="Student voices" />
@@ -588,7 +588,7 @@ px-4 py-1.5 mb-6"
       </section>
 
       <section
-        ref={ctaRef as React.RefObject<HTMLElement>}
+        ref={ctaRef as React.RefObject<HTMLElement | null>}
         className="max-w-275 mx-auto px-5 sm:px-8 pb-24"
       >
         <div className="bg-[#eedad1] rounded-3xl px-8 py-20 text-center relative overflow-hidden">
