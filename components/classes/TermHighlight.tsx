@@ -5,7 +5,7 @@ I need today's date:
 */
 import { getNextDate, formatDateLong } from "@/lib/dates";
 
-import { Button } from "../layout/Button";
+import { Button } from "../ui/Button";
 
 import Link from "next/link";
 

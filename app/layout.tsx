@@ -1,7 +1,7 @@
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { ToTop } from "@/components/layout/ToTop";
+import { ToTop } from "@/components/ui/ToTop";
 import {
   Lato,
   EB_Garamond,

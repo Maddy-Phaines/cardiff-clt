@@ -1,9 +1,9 @@
-import Section from "@/components/layout/Section";
+import Section from "@/components/ui/Section";
 import Image from "next/image";
-import { Button } from "@/components/layout/Button";
-import { P } from "@/components/layout/P";
-import { Stack } from "@/components/layout/Stack";
-import { H1 } from "@/components/layout/H1";
+import { Button } from "@/components/ui/Button";
+import { P } from "@/components/ui/P";
+import { Stack } from "@/components/ui/Stack";
+import { H1 } from "@/components/ui/H1";
 const ContactPage = () => {
   return (
     <main className="">

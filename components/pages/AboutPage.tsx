@@ -21,7 +21,7 @@ import {
 
 import type { LucideIcon } from "lucide-react";
 
-import { ButtonLink } from "./ButtonLink";
+import { ButtonLink } from "../ui/ButtonLink";
 
 const classIcons: Record<string, LucideIcon> = {
   music: Music4,
@@ -274,7 +274,7 @@ px-4 py-1.5 mb-6"
             >
               read my story
               <MoveRight size={15} />
-            </ButtonLink>
+            ../ui/ButtonLink>
           </div>
           <div
             style={fadeUp(300)}

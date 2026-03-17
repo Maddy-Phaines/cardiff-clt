@@ -1,4 +1,4 @@
-import { Classes } from "@/components/layout/Classes";
+import { Classes } from "@/components/pages/Classes";
 
 export default function ClassDetailPage() {
   return (

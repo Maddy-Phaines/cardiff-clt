@@ -1,4 +1,4 @@
-import Section from "@/components/layout/Section";
+import Section from "@/components/ui/Section";
 
 import Breadcrumb from "@/components/ui/BreadCrumb";
 import React from "react";

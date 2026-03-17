@@ -1,4 +1,4 @@
-import Container from "./Container";
+import Container from "../ui/Container";
 
 export default function Footer() {
   return (
@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="py-8 text-sm text-gray-600">
           © {new Date().getFullYear()} Biodanza with Caroline
         </div>
-      </Container>
+      ../ui/Container>
     </footer>
   );
 }
