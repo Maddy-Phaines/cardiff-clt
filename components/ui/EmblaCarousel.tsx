@@ -52,7 +52,7 @@ export function EmblaCarousel() {
                       items-center"
                       >
                         <Image
-                          src="/images/profile2W.jpg"
+                          src="/images/caroline-profile.jpg"
                           alt="Profile photo of Jill Lubienski"
                           width={70}
                           height={70}
@@ -91,7 +91,7 @@ export function EmblaCarousel() {
                       items-center"
                       >
                         <Image
-                          src="/images/profile2W.jpg"
+                          src="/images/caroline-profile.jpg"
                           alt="Profile photo of Wayne"
                           width={70}
                           height={70}
@@ -130,7 +130,7 @@ export function EmblaCarousel() {
                       items-center"
                       >
                         <Image
-                          src="/images/profile2W.jpg"
+                          src="/images/caroline-profile.jpg"
                           alt="Profile photo of Alys"
                           width={70}
                           height={70}

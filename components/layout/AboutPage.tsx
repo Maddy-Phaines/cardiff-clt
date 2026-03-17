@@ -287,7 +287,7 @@ px-4 py-1.5 mb-6"
               />
               <div className="relative w-full aspect-3/4 rounded-t-[999px] overflow-hidden shadow-[0_24px_60px_rgba(30,42,58,0.15)]">
                 <Image
-                  src="/images/profile2W.jpg"
+                  src="/images/caroline-profile.jpg"
                   alt="Caroline dancing joyfully in a field of yellow flowers"
                   fill
                   className="object-cover object-top"
@@ -341,7 +341,7 @@ px-4 py-1.5 mb-6"
           <div className="relative overflow-hidden aspect-3/4 rounded-3xl shadow-sm">
             <Image
               alt="Caroline with her diploma"
-              src="/images/c_diploma1773672798.webp"
+              src="/images/caroline-diploma-celebration.webp"
               fill
               priority
               sizes="(max-width: 768px) 100vw, 389px"

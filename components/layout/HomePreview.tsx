@@ -42,7 +42,7 @@ export const HomePreview = ({ classInfo }: Props) => {
         min-h-[65vh] md:min-h-[75vh] lg:min-h-[85vh]"
       >
         <Image
-          src="/images/pexels-fotios-photos-109260.jpg"
+          src="/images/sunlit-meadow.jpg"
           alt="Biodanza group session"
           fill
           priority

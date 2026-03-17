@@ -164,7 +164,7 @@ export default function HomePageSections() {
             <FadeIn delay={0.15} className="relative">
               <div className="relative aspect-4/5 w-full max-w-md mx-auto rounded-3xl overflow-hidden shadow-[0_24px_64px_rgba(30,42,58,0.14)]">
                 <Image
-                  src="/images/group-happy1773672597.webp"
+                  src="/images/class-group-celebration.webp"
                   alt="People dancing joyfully in a Biodanza session"
                   fill
                   className="object-cover"
@@ -341,7 +341,7 @@ export default function HomePageSections() {
                 />
                 <div className="relative aspect-3/4 rounded-t-[999px] rounded-b-3xl overflow-hidden shadow-[0_24px_64px_rgba(30,42,58,0.16)]">
                   <Image
-                    src="/images/c-profile-cropped.png"
+                    src="/images/caroline-profile-cropped.png"
                     alt="Caroline, Biodanza teacher"
                     fill
                     className="object-cover object-top"

@@ -373,7 +373,7 @@ export const Classes = () => {
 
             <div className="relative w-52 xl:w-80 overflow-hidden rounded-t-[999px] rounded-b-none aspect-3/4 shadow-lg">
               <Image
-                src="/images/profile2W1773672679.webp"
+                src="/images/caroline-profile.webp"
                 alt="Participants moving joyfully together in a Biodanza session at Sardis Chapel, Pontypridd"
                 fill
                 sizes="(min-width: 1024px) 320px, 0px"
@@ -447,7 +447,7 @@ export const Classes = () => {
             >
               <div className="relative min-h-55 md:min-h-75">
                 <Image
-                  src="/images/group-happy.jpeg"
+                  src="/images/class-group-celebration.jpeg"
                   alt="Participants moving joyfully together in a Biodanza session at Sardis Chapel, Pontypridd"
                   fill
                   className="object-cover"

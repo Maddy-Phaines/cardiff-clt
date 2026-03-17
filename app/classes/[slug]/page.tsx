@@ -77,7 +77,7 @@ const classData: ClassData = {
   subtitle:
     "A regular space to drop in, move freely, and connect with others through music and guided dance. Suitable for complete beginners — no experience needed.",
   category: "Fortnightly Class",
-  imageSrc: "/images/profile2W.jpg",
+  imageSrc: "/images/caroline-profile.jpg",
   imageAlt: "Group of people moving freely together in a dance session",
   price: 10,
   priceNote: "per session · £7 concessions",
@@ -152,7 +152,7 @@ const classData: ClassData = {
     name: "Caroline",
     title: "Certified Biodanza Teacher",
     bio: "Caroline has been teaching Biodanza for 8 years and trained under the International Biocentric Foundation. Her classes are known for being warm, grounded, and genuinely welcoming to all.",
-    imageSrc: "/images/profile2W.jpg",
+    imageSrc: "/images/caroline-profile.jpg",
   },
   whatToBring: [
     "Comfortable, loose clothing",

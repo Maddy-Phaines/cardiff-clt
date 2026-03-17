@@ -119,7 +119,7 @@ export default function HomeHero(): React.ReactElement {
             shadow-[0_32px_80px_rgba(30,42,58,0.18),0_8px_20px_rgba(30,42,58,0.08)]"
             >
               <Image
-                src="/images/profile2W1773672679.webp"
+                src="/images/caroline-profile.webp"
                 alt="Caroline dancing joyfully in a field of yellow flowers"
                 fill
                 className="object-cover object-top"
