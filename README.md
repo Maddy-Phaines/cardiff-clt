@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Biodanza with Caroline
+
+A marketing and booking website for Caroline Boyce, a certified Biodanza teacher running fortnightly classes in Pontypridd, South Wales.
+
+Built as a freelance project and designed to reflect the warmth and accessibility of Biodanza — a practice combining music, movement, and human connection.
+
+## Performance
+
+Audited with Google Lighthouse — scoring 100 across all metrics on every page.
+
+| Performance | Accessibility | Best Practices | SEO |
+|:-----------:|:-------------:|:--------------:|:---:|
+| 100 | 100 | 100 | 100 |
+
+## Features
+
+- Class and event listings with dynamic routing
+- Booking flow with session management
+- About page with scroll-driven animations and a testimonial carousel
+- Entrance animations with `prefers-reduced-motion` support
+- Structured data (JSON-LD) for SEO
+- Fully responsive, accessible markup
+
+## Tech Stack
+
+| | |
+|---|---|
+| Framework | Next.js 16 (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS v4 |
+| Animation | Framer Motion |
+| Carousel | Embla Carousel |
+| Icons | Lucide React |
+| Fonts | Playfair Display, Lato, Cormorant Garamond (Google Fonts) |
+
+## Architecture Decisions
+
+**Next.js (App Router)** was chosen over a simpler static site solution because the client has plans to grow the site progressively — adding a booking portal, contact forms, and other dynamic features over time. The App Router's support for server components, API routes, and server actions means these features can be built incrementally without re-architecting the project. Getting the site live quickly was the immediate priority, but full-stack capability was built in from the outset to keep future enhancement straightforward.
+
+## Project Structure
+
+```
+app/              # Next.js App Router pages and layouts
+components/
+  layout/         # Global chrome — Header, Footer, Logo
+  pages/          # Full-page components — AboutPage, Classes
+  sections/       # Page-level sections — HomeHero, HomePageSections
+  ui/             # Reusable primitives — Button, Section, Stack, etc.
+  features/       # Domain components — booking, classes, events
+data/             # Static content — classes, events
+hooks/            # Custom hooks — useEntranceAnimation, useScrollFade
+lib/              # Utilities — date helpers, slugify, data fetching
+public/images/    # Optimised site imagery
+```
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
