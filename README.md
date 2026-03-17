@@ -16,6 +16,7 @@ Audited with Google Lighthouse — scoring 100 across all metrics on every page.
 
 - Class and event listings with dynamic routing
 - Booking flow with session management
+- Contact page with direct email, phone, location and social links
 - About page with scroll-driven animations and a testimonial carousel
 - Entrance animations with `prefers-reduced-motion` support
 - Structured data (JSON-LD) for SEO
