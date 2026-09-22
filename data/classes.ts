@@ -8,21 +8,27 @@ export const classes = [
     title: "Biodanza Workshop",
 
     location: "Sardis Chapel, Pontypridd",
-    description: "Fortnightly group session",
+    description: "Monthly group session",
     time: "Sundays 2.30pm - 4.30pm",
     price: "£10",
     id: classId,
 
+    rates: [
+      { label: "Supporter", price: "£12" },
+      { label: "Standard", price: "£10" },
+      { label: "Access", price: "£8" },
+      { label: "Early Bird Entry", price: "£8" },
+    ],
+
     terms: [
       {
-        name: "Spring 2026",
-        dates: [
-          "2026-01-18",
-          "2026-02-01",
-          "2026-02-15",
-          "2026-03-01",
-          "2026-03-15",
-        ],
+        name: "Autumn 2026",
+        dates: ["2026-10-11", "2026-11-15", "2026-12-13"],
+        dandelionUrls: {
+          "2026-10-11": "https://dandelion.events/e/e06k7",
+          "2026-11-15": "https://dandelion.events/e/d6ymg",
+          "2026-12-13": "https://dandelion.events/e/r0yz4",
+        },
       },
     ],
   },

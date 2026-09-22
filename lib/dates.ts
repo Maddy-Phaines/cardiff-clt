@@ -12,14 +12,6 @@ const getTodayUkIso = (): string => {
     month: "2-digit",
     day: "2-digit",
   }).formatToParts(new Date());
-  console.log("Parts:", parts);
-  Parts: [
-    { type: "year", value: "2026" },
-    { type: "literal", value: "-" },
-    { type: "month", value: "02" },
-    { type: "literal", value: "-" },
-    { type: "day", value: "12" },
-  ];
   const year = parts.find((p) => p.type === "year")?.value;
   const month = parts.find((p) => p.type === "month")?.value;
   const day = parts.find((p) => p.type === "day")?.value;
@@ -54,4 +46,26 @@ export const formatDateLong = (dateStr: string) => {
     month: "short",
     year: "numeric",
   });
+};
+
+// This turns "2026-02-15" into something like: 15 Feb
+export const formatDateShort = (dateStr: string) => {
+  const [year, month, day] = dateStr.split("-").map(Number);
+  const date = new Date(Date.UTC(year, month - 1, day, 12));
+
+  return date.toLocaleDateString("en-GB", {
+    timeZone: "Europe/London",
+    day: "numeric",
+    month: "short",
+  });
+};
+
+// Returns dates that are today or later, sorted ascending
+export const getUpcomingDates = (dates: string[]): string[] => {
+  const todayUk = getTodayUkIso();
+  return dates
+    .map((d) => d.trim())
+    .filter((d) => ISO_DATE_REGEX.test(d))
+    .filter((d) => d >= todayUk)
+    .sort();
 };

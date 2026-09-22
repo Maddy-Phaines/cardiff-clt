@@ -16,10 +16,14 @@ import {
   Star,
   MoveRight,
   CircleCheck,
-  Flower,
 } from "lucide-react";
 
 import type { LucideIcon } from "lucide-react";
+
+import { classes } from "@/data/classes";
+import { getNextDate, formatDateLong, formatDateShort } from "@/lib/dates";
+
+const DANDELION_URL = "https://dandelion.events/u/biodanza_with_caroline";
 
 const expectIcons: Record<string, LucideIcon> = {
   music: Music,
@@ -29,65 +33,35 @@ const expectIcons: Record<string, LucideIcon> = {
   users: Users,
 };
 
-interface UpcomingSession {
-  day: string;
-  month: string;
-  dayName: string;
-  time: string;
-  location: string;
-  spotsLeft: number;
-  isNext?: boolean;
-}
-
-interface RelatedClass {
-  slug: string;
-  title: string;
-  type: string;
-  meta: string;
-  bgColor: string;
-}
-
 interface ClassData {
   title: string;
   subtitle: string;
   category: string;
   imageSrc: string;
   imageAlt: string;
-  price: number;
-  priceNote: string;
-  spotsRemaining: number;
-  nextSessionLabel: string;
   duration: string;
   location: string;
   locationAddress: string;
   level: string;
-  schedule: string;
   maxParticipants: number;
   about: string[];
   whatToExpect: Array<{ icon: string; text: string }>;
   testimonial: { quote: string; name: string; role: string };
-  upcomingSessions: UpcomingSession[];
   facilitator: { name: string; title: string; bio: string; imageSrc?: string };
   whatToBring: string[];
-  relatedClasses: RelatedClass[];
 }
 
 const classData: ClassData = {
-  title: "Fortnightly Biodanza Class",
+  title: "Biodanza Workshop",
   subtitle:
-    "A regular space to drop in, move freely, and connect with others through music and guided dance. Suitable for complete beginners — no experience needed.",
-  category: "Fortnightly Class",
+    "A monthly space to drop in, move freely, and connect with others through music and guided dance. Suitable for complete beginners — no experience needed.",
+  category: "Monthly Workshop",
   imageSrc: "/images/caroline-profile.jpg",
   imageAlt: "Group of people moving freely together in a dance session",
-  price: 10,
-  priceNote: "per session · £7 concessions",
-  spotsRemaining: 4,
-  nextSessionLabel: "Sunday 15th Mar, 2:30pm - 4:30",
   duration: "2 Hours",
   location: "Sardis Chapel",
   locationAddress: "Sardis Chapel, Sardis Road, Pontypridd, CF37 1DU",
   level: "Open to all",
-  schedule: "Every Fortnight · Sunday 2:30–4:30pm",
   maxParticipants: 14,
   about: [
     "Biodanza is a system of human integration developed by Rolando Toro that uses music, movement, and group encounters to evoke deep feelings of joy, connection, and aliveness. Unlike performance-based dance, there is no choreography to learn — only an invitation to move as you feel.",
@@ -117,41 +91,14 @@ const classData: ClassData = {
   ],
   testimonial: {
     quote:
-      "I came along not knowing what to expect and left feeling lighter than I have in months. There's something magical about moving with a group of people without any pressure to get it right.",
-    name: "Sarah M.",
-    role: "Regular attendee · Cardiff",
+      "Caroline has such a gentle, containing presence and she encourages everyone to try the exercises to their ability level with no judgement, promoting an accepting and inclusive atmosphere.",
+    name: "Jill Lubienski",
+    role: "Biodanza Customer",
   },
-  upcomingSessions: [
-    {
-      day: "11",
-      month: "Mar",
-      dayName: "Tuesday",
-      time: "7:00–8:30pm",
-      location: "Sardis Chapel, Pontyprid",
-      spotsLeft: 4,
-      isNext: true,
-    },
-    {
-      day: "18",
-      month: "Mar",
-      dayName: "Tuesday",
-      time: "7:00–8:30pm",
-      location: "Sardis Chapel, Pontyprid",
-      spotsLeft: 9,
-    },
-    {
-      day: "25",
-      month: "Mar",
-      dayName: "Tuesday",
-      time: "7:00–8:30pm",
-      location: "Sardis Chapel, Pontyprid",
-      spotsLeft: 11,
-    },
-  ],
   facilitator: {
     name: "Caroline",
     title: "Certified Biodanza Teacher",
-    bio: "Caroline has been teaching Biodanza for 8 years and trained under the International Biocentric Foundation. Her classes are known for being warm, grounded, and genuinely welcoming to all.",
+    bio: "Caroline has been teaching Biodanza for 4+ years and trained at the IBFed Bristol School of Biodanza. Her classes are known for being warm, grounded, and genuinely welcoming to all.",
     imageSrc: "/images/caroline-profile.jpg",
   },
   whatToBring: [
@@ -160,31 +107,31 @@ const classData: ClassData = {
     "A water bottle",
     "An open mind",
   ],
-  relatedClasses: [
-    {
-      slug: "introduction-day",
-      title: "Biodanza Introduction Day",
-      type: "Workshop",
-      meta: "Saturday · Full day · £45",
-      bgColor: "#eedad1",
-    },
-    {
-      slug: "spring-retreat",
-      title: "Spring Awakening Retreat",
-      type: "Retreat",
-      meta: "Weekend · April 2025 · £180",
-      bgColor: "#d1e8d8",
-    },
-    {
-      slug: "candlelight",
-      title: "Biodanza by Candlelight",
-      type: "Special Event",
-      meta: "Friday evening · March 28 · £18",
-      bgColor: "#f5f0e6",
-    },
-  ],
 };
 const data = classData;
+
+const featuredClass = classes[0];
+const term = featuredClass.terms[0];
+const nextDate = getNextDate(term.dates);
+const upcomingSessions = term.dates.map((dateStr) => {
+  const [, , day] = dateStr.split("-");
+  return {
+    dateStr,
+    day: String(Number(day)),
+    month: formatDateShort(dateStr).split(" ")[1],
+    dayName: "Sunday",
+    time: featuredClass.time.replace("Sundays ", ""),
+    location: featuredClass.location,
+    isNext: dateStr === nextDate,
+    bookingUrl:
+      (term.dandelionUrls as Record<string, string> | undefined)?.[
+        dateStr
+      ] ?? DANDELION_URL,
+  };
+});
+const lowestRate = Math.min(
+  ...featuredClass.rates.map((rate) => Number(rate.price.replace("£", ""))),
+);
 
 const MetaPill = ({
   metaIcon,
@@ -215,17 +162,32 @@ function SectionLabel({ text }: { text: string }): React.ReactElement {
   );
 }
 
+interface UpcomingSession {
+  dateStr: string;
+  day: string;
+  month: string;
+  dayName: string;
+  time: string;
+  location: string;
+  isNext: boolean;
+  bookingUrl: string;
+}
+
 function SessionRow({
   session,
 }: {
   session: UpcomingSession;
 }): React.ReactElement {
   return (
-    <div
-      className={`flex items-center justify-between px-5 py-4 rounded-2xl border ${
+    <Link
+      href={session.bookingUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`Book the ${session.dayName} ${session.day} ${session.month} session on Dandelion Events`}
+      className={`flex items-center justify-between px-5 py-4 rounded-2xl border transition-colors ${
         session.isNext
-          ? "border-rose-400 bg-[#fdf6f4]"
-          : "border-stone-200 bg-white"
+          ? "border-rose-400 bg-[#fdf6f4] hover:bg-[#fbeae7]"
+          : "border-stone-200 bg-white hover:border-rose-200"
       }`}
     >
       <div className="flex items-center gap-4">
@@ -249,19 +211,18 @@ function SessionRow({
           <p className="text-[0.875rem] font-medium text-[#1e2a3a]">
             {session.dayName} · {session.time}
           </p>
-          <p className="text-[0.75rem] text-stone-500">
-            {session.location} · {session.spotsLeft} spots left
-          </p>
+          <p className="text-[0.75rem] text-stone-500">{session.location}</p>
         </div>
       </div>
       <span
-        className={`text-[0.65rem] uppercase tracking-wide px-2.5 py-1 rounded-full font-medium ${
+        className={`inline-flex items-center gap-1 text-[0.65rem] uppercase tracking-wide px-2.5 py-1 rounded-full font-medium ${
           session.isNext ? "bg-[#c4705a] text-white" : "bg-[#8fb5a0] text-white"
         }`}
       >
         {session.isNext ? "Next up" : "Available"}
+        <MoveRight size={11} aria-hidden="true" />
       </span>
-    </div>
+    </Link>
   );
 }
 
@@ -292,7 +253,7 @@ export default function ClassDetailPage() {
             <div className="flex flex-wrap gap-2.5 mb-8">
               <MetaPill
                 metaIcon={<Clock size={14} aria-hidden="true" />}
-                label={data.schedule}
+                label={`Monthly · ${featuredClass.time}`}
               />
               <MetaPill
                 metaIcon={<MapPin size={14} aria-hidden="true" />}
@@ -326,32 +287,40 @@ export default function ClassDetailPage() {
               className="rounded-xl bg-amber-20 p-8 border border-stone-200 
           shadow-[0_4px_24px_rgba(30,42,58,0.06)]"
             >
-              <div className="mb-2">
+              <div className="mb-4">
                 <p
                   className="text-[#1e2a3a] text-[2.5rem] font-light mb-1 leading-none"
                   style={{ fontFamily: "'Cormorant Garamond', serif" }}
                 >
-                  £{data.price}
+                  From £{lowestRate}
                 </p>
-                <p className="text-[#1e2a3a]">{data.priceNote}</p>
+                <p className="text-[#1e2a3a]">per class</p>
               </div>
 
-                      {data.spotsRemaining <= 5 && (
-                <div
-                  className="flex items-center gap-2 bg-amber-100 text-stone px-4 py-3 rounded-xl text-[0.8rem] 
-              text-amber-800 mb-6"
-                >
-                  <span
-                    className="h-2 w-2 bg-[#E47200] rounded-full shadow-sm animate-pulse"
-                    aria-hidden="true"
-                  />
-                  {data.spotsRemaining} Spots remaining this session
-                </div>
-              )}
+              <div className="grid grid-cols-2 gap-2 mb-6">
+                {featuredClass.rates.map((rate) => (
+                  <div
+                    key={rate.label}
+                    className="bg-[#f8edeb] rounded-xl px-3 py-2.5"
+                  >
+                    <p className="text-[1rem] text-[#1e2a3a] font-medium leading-none">
+                      {rate.price}
+                    </p>
+                    <p className="text-[0.65rem] text-stone-500 uppercase tracking-wide mt-1.5">
+                      {rate.label}
+                    </p>
+                  </div>
+                ))}
+              </div>
 
               <div className="space-y-3 mb-6">
                 {[
-                  { label: "Next session", value: data.nextSessionLabel },
+                  {
+                    label: "Next session",
+                    value: nextDate
+                      ? formatDateLong(nextDate)
+                      : "Check back soon",
+                  },
                   { label: "Duration", value: data.duration },
                   { label: "Location", value: data.locationAddress },
                   { label: "Level", value: data.level },
@@ -368,8 +337,10 @@ export default function ClassDetailPage() {
                 <div className="h-px bg-stone-200 mb-6" />
               </div>
               <Link
-                href="https://dandelion.events/e/f88qh?fbclid=IwZnRzaAQDpcJleHRuA2FlbQIxMQBzcnRjBmFwcF9pZAo2NjI4NTY4Mzc5AAEeyYaBmk2OnxQ_4wlsVnBnZw7Q_CE7X6X1xCcOrGoy16WALQ_m1Jb-dg7ZZXw_aem_wq2LH2Ke1kKvTyQZO5PT3w"
-                className="flex gap-2 bg-[#1e2a3a] py-4 text-[0.875rem] w-full justify-center 
+                href={DANDELION_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex gap-2 bg-[#1e2a3a] py-4 text-[0.875rem] w-full justify-center
                 items-center text-white rounded-full transition-all hover:-translate-y-px mb-4"
               >
                 <span>Reserve your place</span>
@@ -377,15 +348,12 @@ export default function ClassDetailPage() {
               </Link>
               <Link
                 href="/contact"
-                className="flex items-center justify-center w-full border border-stone-200 text-[#1e2a3a] 
-              rounded-full py-3.5 text-[0.875rem] hover:border-[#1e2a3a] hover:bg-[#f5f0e6] 
+                className="flex items-center justify-center w-full border border-stone-200 text-[#1e2a3a]
+              rounded-full py-3.5 text-[0.875rem] hover:border-[#1e2a3a] hover:bg-[#f5f0e6]
               transition-colors"
               >
                 <span>Ask a question</span>
               </Link>
-              <p className="text-center text-[0.7rem] text-stone-400 mt-4">
-                Free cancellation up to 24 hours before
-              </p>
             </div>
           </div>
         </div>
@@ -488,8 +456,8 @@ export default function ClassDetailPage() {
                 Reserve your spot
               </h2>
               <div className="flex flex-col gap-3">
-                {data.upcomingSessions.map((session, i) => (
-                  <SessionRow key={i} session={session} />
+                {upcomingSessions.map((session) => (
+                  <SessionRow key={session.dateStr} session={session} />
                 ))}
               </div>
             </section>
@@ -580,45 +548,6 @@ export default function ClassDetailPage() {
               </ul>
             </div>
           </aside>
-
-          <div>
-            <SectionLabel text="More from Caroline" />
-            <h2 className="text-[#1e2a3a] text-[1.875rem] leading-snug mb-6">
-              You might also like
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-              {data.relatedClasses.map((clss, i) => (
-                <Link
-                  key={clss.slug}
-                  href={clss.slug}
-                  className="border border-stone-200 shadow-2xl bg-white overflow-hidden
-                 hover:translate-y-1 rounded-2xl hover:shadow-[0_8px_32px_rgba(30,42,58,0.1)] transition-all"
-                >
-                  <div
-                    className={`h-28 flex items-center 
-                      justify-center text-2xl`}
-                    style={{ backgroundColor: `${clss.bgColor}` }}
-                  >
-                    <Flower size={18} className="text-pink-400 text-[0.7rem]" />
-                  </div>
-                  <div className="p-5 bg-white">
-                    <p
-                      className="uppercase tracking-wide font-medium mb-1
-                     text-[#c4705a] text-[0.65rem]"
-                    >
-                      {clss.type}
-                    </p>
-                    <p className="text-[0.875rem] text-[#1A2A3A] mb-1">
-                      {clss.title}
-                    </p>
-                    <p className="text-stone-500 text-[0.75rem] mb-1">
-                      {clss.meta}
-                    </p>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
     </>

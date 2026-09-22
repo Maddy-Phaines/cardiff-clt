@@ -20,19 +20,12 @@ import type { LucideIcon } from "lucide-react";
 
 import { SectionEyebrow } from "../ui/SectionEyebrow";
 import { classes } from "@/data/classes";
-import { getNextDate, formatDateLong } from "@/lib/dates";
+import { getNextDate, formatDateLong, formatDateShort } from "@/lib/dates";
 
 interface Expectation {
   icon: LucideIcon;
   title: string;
   text: string;
-}
-
-interface PriceTier {
-  label: string;
-  value: string;
-  sub: string;
-  featured?: boolean;
 }
 
 interface FaqItem {
@@ -58,17 +51,6 @@ const expectations: Expectation[] = [
   },
 ];
 
-const priceTiers: PriceTier[] = [
-  { label: "Standard", value: "£10", sub: "per class" },
-  { label: "Concessions", value: "£7", sub: "per class" },
-  {
-    label: "First class",
-    value: "£5",
-    sub: "introductory offer",
-    featured: true,
-  },
-];
-
 const faqs: FaqItem[] = [
   {
     q: "Do I need any experience?",
@@ -80,11 +62,11 @@ const faqs: FaqItem[] = [
   },
   {
     q: "How do I book a place?",
-    a: "Simply email biodanzawithcaroline@gmail.com to reserve your place. Caroline will confirm your booking and send any joining details ahead of the class.",
+    a: "Email biodanzawithcaroline@gmail.com to reserve your place or book via Dandelion events.",
   },
   {
     q: "Can I come just once to try it?",
-    a: "Absolutely. There is no commitment required. Your first class is just £5 as an introductory offer, and you are welcome to attend as regularly or occasionally as suits you.",
+    a: "Absolutely. There is no commitment required. You are welcome to attend as regularly or occasionally as suits you.",
   },
   {
     q: "Is it suitable if I have mobility issues?",
@@ -96,24 +78,14 @@ const classMeta: { icon: React.ReactNode; label: string }[] = [
   { icon: <Clock size={14} aria-hidden="true" />, label: "2:30–4:30pm" },
   {
     icon: <CalendarDays size={14} aria-hidden="true" />,
-    label: "Fortnightly Sundays",
+    label: "Monthly Sundays",
   },
   {
     icon: <MapPin size={14} aria-hidden="true" />,
     label: "Sardis Chapel, Pontypridd",
   },
-  { icon: <PoundSterling size={14} aria-hidden="true" />, label: "From £5" },
+  { icon: <PoundSterling size={14} aria-hidden="true" />, label: "From £8" },
 ];
-
-function formatShortDate(dateStr: string): string {
-  const [year, month, day] = dateStr.split("-").map(Number);
-  const d = new Date(Date.UTC(year, month - 1, day, 12));
-  return d.toLocaleDateString("en-GB", {
-    timeZone: "Europe/London",
-    day: "numeric",
-    month: "short",
-  });
-}
 
 function FadeIn({
   children,
@@ -195,16 +167,18 @@ function FaqAccordion({ items }: { items: FaqItem[] }): React.ReactElement {
 function StructuredData({
   term,
   title,
+  rates,
 }: {
   term: { name: string; dates: string[] };
   title: string;
+  rates: { label: string; price: string }[];
 }): React.ReactElement {
   const eventSchema = {
     "@context": "https://schema.org",
     "@type": "Event",
     name: `${title} with Caroline`,
     description:
-      "A fortnightly Biodanza group class for all abilities at Sardis Chapel, Pontypridd. Guided by music, movement, and human encounter. No experience needed. First class £5.",
+      "A monthly Biodanza group class for all abilities at Sardis Chapel, Pontypridd. Guided by music, movement, and human encounter. No experience needed.",
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     eventStatus: "https://schema.org/EventScheduled",
     startDate: term.dates[0],
@@ -226,22 +200,13 @@ function StructuredData({
       name: "Caroline",
       email: "biodanzawithcaroline@gmail.com",
     },
-    offers: [
-      {
-        "@type": "Offer",
-        name: "Standard",
-        price: "10.00",
-        priceCurrency: "GBP",
-        availability: "https://schema.org/InStock",
-      },
-      {
-        "@type": "Offer",
-        name: "First class introductory offer",
-        price: "5.00",
-        priceCurrency: "GBP",
-        availability: "https://schema.org/InStock",
-      },
-    ],
+    offers: rates.map((rate) => ({
+      "@type": "Offer",
+      name: rate.label,
+      price: rate.price.replace("£", ""),
+      priceCurrency: "GBP",
+      availability: "https://schema.org/InStock",
+    })),
   };
 
   const faqSchema = {
@@ -281,7 +246,11 @@ export const Classes = () => {
 
   return (
     <div className="min-h-screen">
-      <StructuredData term={term} title={featuredClass.title} />
+      <StructuredData
+        term={term}
+        title={featuredClass.title}
+        rates={featuredClass.rates}
+      />
 
       <section className="" aria-label="Classes hero">
         <div className="max-w-275 mx-auto px-5 sm:px-8 pt-14 pb-16 grid grid-cols-1 lg:grid-cols-[55%_45%] gap-12 lg:gap-8 items-center">
@@ -307,7 +276,7 @@ export const Classes = () => {
               style={fadeUp(550)}
               className="text-[1rem] max-w-[40ch] text-[#1e2a3a] leading-relaxed mb-8"
             >
-              A fortnightly Sunday class in Pontypridd for all levels — no
+              A monthly Sunday class in Pontypridd for all levels — no
               experience, no performance, no judgement. Just music, movement and
               genuine human connection.
             </p>
@@ -351,7 +320,7 @@ export const Classes = () => {
               {[
                 "4+ years teaching",
                 "All levels welcome",
-                "£5 first class",
+                "From £8 per class",
                 "BSCO-affiliated facilitator",
               ].map((item) => (
                 <li key={item} className="flex items-center gap-1.5">
@@ -392,10 +361,10 @@ export const Classes = () => {
                 className="text-[2rem] leading-none text-[#1e2a3a]"
                 style={{ fontFamily: "'Cormorant Garamond', serif" }}
               >
-                £5
+                £8
               </p>
               <p className="text-[0.8125rem] text-stone-500 mt-0.5">
-                First class
+                From, per class
               </p>
             </div>
           </div>
@@ -407,7 +376,7 @@ export const Classes = () => {
         className="max-w-275 mx-auto pt-16 px-5 sm:px-8 pb-20"
       >
         <FadeIn>
-          <SectionEyebrow text="What to expect" />
+          <SectionEyebrow text="What to expect" className="mb-5" />
           <div className="bg-[#eedad1] rounded-3xl grid grid-cols-1 md:grid-cols-3 gap-6 px-10 py-10">
             {expectations.map((expect, i) => {
               const Icon = expect.icon;
@@ -468,14 +437,14 @@ export const Classes = () => {
               <div className="flex flex-col justify-between p-8 gap-5">
                 <div>
                   <span className="inline-flex items-center bg-rose-100 rounded-full text-[0.75rem] text-[#c4705a] px-4 py-1.5 mb-3">
-                    Fortnightly · Sundays
+                    Monthly · Sundays
                   </span>
                   <h2 id="class-card-heading" className="text-[1.75rem] mb-3">
                     Biodanza Workshop
                   </h2>
                   <p className="text-[0.875rem] text-stone-500 leading-[1.75] max-w-[40ch] mb-4">
                     A gentle, welcoming group class open to all abilities. We
-                    meet fortnightly on Sunday afternoons at Sardis Chapel in
+                    meet monthly on Sunday afternoons at Sardis Chapel in
                     Pontypridd — a friendly and inclusive space.
                   </p>
                   <div className="flex flex-wrap gap-2">
@@ -518,7 +487,7 @@ export const Classes = () => {
           <SectionEyebrow text={`${term.name} · Session dates`} />
           <FadeIn>
             <div
-              className="grid grid-cols-2 md:grid-cols-5 gap-px rounded-3xl overflow-hidden bg-[#1e2a3a]"
+              className="grid grid-cols-3 gap-px rounded-3xl overflow-hidden bg-[#1e2a3a]"
               role="list"
               aria-label={`${term.name} session dates`}
             >
@@ -552,7 +521,7 @@ export const Classes = () => {
                         isNext ? "text-rose-300" : "text-white"
                       }`}
                     >
-                      {formatShortDate(dateStr)}
+                      {formatDateShort(dateStr)}
                     </div>
                   </div>
                 );
@@ -577,35 +546,23 @@ export const Classes = () => {
         <div className="max-w-275 mx-auto">
           <SectionEyebrow text="Pricing" />
           <FadeIn>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-[700px] mx-auto">
-              {priceTiers.map((tier) => (
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 max-w-205 mx-auto">
+              {featuredClass.rates.map((rate) => (
                 <div
-                  key={tier.label}
-                  className={`rounded-2xl p-6 text-center border ${
-                    tier.featured
-                      ? "bg-[#eedad1] border-[#d4b09a]"
-                      : "bg-white border-stone-200"
-                  }`}
+                  key={rate.label}
+                  className="rounded-2xl p-6 text-center border bg-white border-stone-200"
                 >
-                  <div
-                    className={`text-[0.75rem] uppercase tracking-[0.13em] mb-2 ${
-                      tier.featured ? "text-[#c4705a]" : "text-stone-500"
-                    }`}
-                  >
-                    {tier.label}
+                  <div className="text-[0.75rem] uppercase tracking-[0.13em] mb-2 text-stone-500">
+                    {rate.label}
                   </div>
                   <div
                     className="text-[2.4rem] leading-none text-[#1e2a3a] font-light"
                     style={{ fontFamily: "'Cormorant Garamond', serif" }}
                   >
-                    {tier.value}
+                    {rate.price}
                   </div>
-                  <div
-                    className={`text-[0.75rem] mt-1 ${
-                      tier.featured ? "text-[#c4705a]" : "text-stone-500"
-                    }`}
-                  >
-                    {tier.sub}
+                  <div className="text-[0.75rem] mt-1 text-stone-500">
+                    per class
                   </div>
                 </div>
               ))}
@@ -660,8 +617,7 @@ export const Classes = () => {
                 Ready to come along?
               </h2>
               <p className="text-[0.9rem] text-white/55 max-w-[38ch] mx-auto mb-7 leading-[1.7] relative z-10">
-                Your first class is just £5. There is nothing to prepare — just
-                turn up and be yourself.
+                There is nothing to prepare — just turn up and be yourself.
               </p>
               <div className="flex gap-3 justify-center flex-wrap relative z-10">
                 <a
