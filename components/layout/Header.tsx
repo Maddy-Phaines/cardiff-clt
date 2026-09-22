@@ -40,7 +40,7 @@ export default function Header() {
     <header
       className="w-full top-0 sticky
       left-0 right-0 
-    z-1000 bg-amber-100 shadow-2xs"
+    z-1000 shadow-2xs"
     >
       <div className="py-6">
         <div
@@ -59,12 +59,13 @@ export default function Header() {
 
             <ul
               className={clsx(
-                "flex flex-col md:flex-row translate-x-0 items-center gap-8",
+                `flex flex-col md:flex-row translate-x-0 items-center gap-8 `,
                 {
                   "flex-col  fixed top-0 p-8 right-0 bottom-0 w-1/2 transform transition-transform duration-300 ease-in-out translate-x-0":
                     menuOpen,
-                  "fixed top-0 right-0 bottom-0 p-8  duration-300 ease-in-out translate-x-full":
+                  "fixed top-0 right-0 bottom-0 p-8 duration-300 ease-in-out translate-x-full":
                     !menuOpen && isMobile,
+                  "bg-pink-600": menuOpen && isMobile,
                 },
               )}
             >

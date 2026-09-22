@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="py-8 text-sm text-gray-600">
           © {new Date().getFullYear()} Biodanza with Caroline
         </div>
-      ../ui/Container>
+      </Container>
     </footer>
   );
 }
