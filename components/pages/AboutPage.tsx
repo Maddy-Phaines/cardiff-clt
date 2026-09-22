@@ -63,7 +63,6 @@ interface Testimonial {
   role: string;
 }
 
-
 const stats: Stat[] = [
   { value: 3, label: "Years teaching" },
   { value: 100, label: "Students guided" },
@@ -133,21 +132,21 @@ const badges: Badge[] = [
 const testimonials: Testimonial[] = [
   {
     quote:
-      "I came along not knowing what to expect and left feeling lighter than I have in months. There's something magical about moving without any pressure to get it right.",
-    name: "Sarah M.",
-    role: "Cardiff · Regular attendee",
+      "I always enjoy Caroline's Biodanza classes. She is a wonderful facilitator who makes everyone feel welcome and relaxed. I also love her music choices and the way she gently guides the participants through her sessions (which are always different). I always leave her classes feeling uplifted. It is a great class for beginners as well as those more experienced in Biodanza, and I would say to anyone thinking about trying Biodanza and attending Caroline's class to definitely give it a go!",
+    name: "Nduka",
+    role: "Biodanza Customer",
   },
   {
     quote:
-      "Caroline holds the space beautifully. I always feel safe, seen, and genuinely welcomed — as a complete beginner that meant everything.",
-    name: "James T.",
-    role: "Pontypridd · 6 months",
+      "Caroline is a wonderful teacher who holds a beautiful nurturing space where you can play, explore and discover the many joys and benefits of dancing Biodanza. Her classes are lovely!",
+    name: "Maris",
+    role: "Biodanza Customer",
   },
   {
     quote:
-      "I booked Caroline for our wellness festival and she was absolutely brilliant. The group energy she creates is unlike anything I've seen from other facilitators.",
-    name: "Priya N.",
-    role: "Festival organiser · Bristol",
+      "She encourages everyone to listen to their own needs in a non-judgmental space. She is a wonderful teacher whose gentle presence is felt immediately upon arrival and her classes are perfect for beginners and all abilities.",
+    name: "Alys",
+    role: "Biodanza Customer",
   },
 ];
 
@@ -244,7 +243,7 @@ const AboutPage = (): React.ReactElement => {
     <div>
       <section className="pt-16 pb-12 px-5 sm:px-8 py-20 max-w-275 mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-8 lg:gap-12 items-end mb-8">
-          <div className="flex flex-col items-start justify-start row-span-1 row-start-1">
+          <div className="flex flex-col items-start justify-start md:row-span-1 md:row-start-1">
             <span
               className="inline-flex items-center text-blue-950 text-[clamp(0.7rem)] uppercase
 tracking-[0.15em]
@@ -274,11 +273,11 @@ px-4 py-1.5 mb-6"
             >
               read my story
               <MoveRight size={15} />
-            ../ui/ButtonLink>
+            </ButtonLink>
           </div>
           <div
             style={fadeUp(300)}
-            className="flex flex-col gap-4 col-start-2 col-span-2"
+            className="flex flex-col gap-4 md:col-start-2 md:col-span-2"
           >
             <div className="relative">
               <div
@@ -336,7 +335,10 @@ px-4 py-1.5 mb-6"
           ))}
         </div>
       </section>
-      <section id="my-story" className="max-w-275 mx-auto py-20 px-5 sm:px-8">
+      <section
+        id="my-story"
+        className="max-w-275 mx-auto md:py-20 px-5 sm:px-8"
+      >
         <div className="grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-12 lg:gap-16 items-center">
           <div className="relative overflow-hidden aspect-3/4 rounded-3xl shadow-sm">
             <Image
@@ -362,7 +364,7 @@ px-4 py-1.5 mb-6"
             </div>
           </div>
           <div>
-            <SectionEyebrow text="My story" />
+            <SectionEyebrow text="My story" className="mb-5" />
             <h2 className="text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.1] text-[#1e2a3a] mb-6">
               How I found Biodanza and what it has done for me
             </h2>

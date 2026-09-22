@@ -52,9 +52,9 @@ const contactChannels = [
   {
     icon: Phone,
     label: "Phone",
-    value: "+44 7700 900000",
-    href: "tel:+447700900000",
-    display: "+44 7700 900000",
+    value: "+44 7402 763610",
+    href: "tel:+447402763610",
+    display: "+44 7402 763610",
   },
   {
     icon: MapPin,
@@ -107,9 +107,9 @@ export default function ContactPage() {
               style={fadeUp(400)}
               className="text-[#1e2a3a]/70 text-[1.0625rem] leading-relaxed max-w-[52ch] mx-auto mb-14"
             >
-              Whether you&apos;re curious about a class, ready to join a
-              session, or simply want to ask a question, I warmly welcome your
-              message.
+              Whether you&apos;re curious about Biodanza, ready to join a
+              session or simply want to ask a question — you&apos;re very
+              welcome to contact me via the details below.
             </p>
 
             {/* Contact channels */}
@@ -188,12 +188,12 @@ export default function ContactPage() {
               className="border-t border-stone-100 pt-12"
             >
               <blockquote className="text-[1rem] text-[#1e2a3a]/70 leading-relaxed italic max-w-[48ch] mx-auto mb-4">
-                &ldquo;I came along not knowing what to expect and left feeling
-                lighter than I have in months. There&apos;s something magical
-                about moving without any pressure to get it right.&rdquo;
+                &ldquo;Caroline is very welcoming and puts you at ease. I
+                always feel happy and joyful in her classes and when I go
+                home I always have a smile on my face.&rdquo;
               </blockquote>
               <figcaption className="text-[0.8125rem] text-[#1e2a3a]/70">
-                Sarah M. &mdash; Cardiff &middot; Regular attendee
+                Wayne &mdash; Biodanza Customer
               </figcaption>
             </figure>
 
