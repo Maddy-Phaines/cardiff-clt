@@ -1,27 +1,20 @@
 "use client";
 
-import { useEffect } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
 import "./EmblaCarousel.css";
 export function EmblaCarousel() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false }, [Autoplay()]);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false });
 
   const goToPrev = () => emblaApi?.scrollPrev();
   const goToNext = () => emblaApi?.scrollNext();
 
-  useEffect(() => {
-    if (!emblaApi) return;
-    emblaApi.plugins().autoplay?.play();
-  }, [emblaApi]);
-
   return (
     <section aria-labelledby="testimonials-heading" className="bg-[#f7f1ee]">
-      <div className="py-[65px]">
-        <div className="px-[10px]">
-          <div className="flex flex-col mb-[40px]">
+      <div className="py-16.25">
+        <div className="px-2.5">
+          <div className="flex flex-col mb-10">
             <div
               className="text-center text-[13px]
         font-semibold uppercase"
@@ -32,7 +25,7 @@ export function EmblaCarousel() {
             <h2
               id="testimonials-heading"
               className="text-[30px] md:text-[38px]
-            lg:text-[42px] mt-[15px] mb-[15px]
+            lg:text-[42px] mt-3.75 mb-3.75
             text-center"
             >
               What people are saying
@@ -42,7 +35,7 @@ export function EmblaCarousel() {
             <div className="embla__viewport overflow-hidden" ref={emblaRef}>
               <div className="embla__container">
                 <div className="embla__slide">
-                  <div className="mx-[15px]">
+                  <div className="mx-3.75">
                     <div
                       className="max-w-3xl w-full mx-auto relative 
                     "
@@ -52,12 +45,12 @@ export function EmblaCarousel() {
                       items-center"
                       >
                         <Image
-                          src="/images/caroline-profile.jpg"
+                          src="/images/participant-4-compressed.webp"
                           alt="Profile photo of Jill Lubienski"
                           width={70}
                           height={70}
                           priority
-                          className="h-auto rounded-full mb-[15px]
+                          className="h-auto rounded-full mb-3.75
                         object-cover object-center"
                         />
                         <p
@@ -69,12 +62,14 @@ export function EmblaCarousel() {
                           ability level with no judgement, promoting an
                           accepting and inclusive atmosphere.
                         </p>
-                        <div className="mt-[15px] text-center">
-                          <div className="text-[#221c34] text-[18px] my-[10px]">
+                        <div className="mt-3.75 text-center">
+                          <div className="text-[#221c34] text-[18px] my-2.5">
                             Jill Lubienski
                           </div>
 
-                          <div className="text-[13px]">Biodanza Customer</div>
+                          <div className="text-[13px]">
+                            Biodanza participant
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -91,7 +86,7 @@ export function EmblaCarousel() {
                       items-center"
                       >
                         <Image
-                          src="/images/caroline-profile.jpg"
+                          src="/images/participant-3-compressed.webp"
                           alt="Profile photo of Wayne"
                           width={70}
                           height={70}
@@ -113,7 +108,9 @@ export function EmblaCarousel() {
                             Wayne
                           </div>
 
-                          <div className="text-[13px]">Biodanza Customer</div>
+                          <div className="text-[13px]">
+                            Biodanza participant
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -130,7 +127,7 @@ export function EmblaCarousel() {
                       items-center"
                       >
                         <Image
-                          src="/images/caroline-profile.jpg"
+                          src="/images/participant-5-compressed.webp"
                           alt="Profile photo of Alys"
                           width={70}
                           height={70}
@@ -153,7 +150,97 @@ export function EmblaCarousel() {
                             Alys
                           </div>
 
-                          <div className="text-[13px]">Biodanza Customer</div>
+                          <div className="text-[13px]">
+                            Biodanza participant
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="embla__slide">
+                  <div className="mx-[15px]">
+                    <div
+                      className="max-w-3xl w-full mx-auto relative
+                    "
+                    >
+                      <div
+                        className="flex flex-col
+                      items-center"
+                      >
+                        <Image
+                          src="/images/participant-2-compressed.webp"
+                          alt="Profile photo of Nduka"
+                          width={70}
+                          height={70}
+                          priority
+                          className="h-auto rounded-full mb-[15px]
+                        object-cover object-center"
+                        />
+                        <p
+                          className="text-center text-[22px]
+                      md:text-[24px] lg:text-[26px]"
+                        >
+                          I always enjoy Caroline&apos;s Biodanza classes. She
+                          is a wonderful facilitator who makes everyone feel
+                          welcome and relaxed. I also love her music choices and
+                          the way she gently guides the participants through her
+                          sessions (which are always different). I always leave
+                          her classes feeling uplifted. It is a great class for
+                          beginners as well as those more experienced in
+                          Biodanza, and I would say to anyone thinking about
+                          trying Biodanza and attending Caroline&apos;s class to
+                          definitely give it a go!
+                        </p>
+                        <div className="mt-[15px] text-center">
+                          <div className="text-[#221c34] text-[18px] my-[10px]">
+                            Nduka
+                          </div>
+
+                          <div className="text-[13px]">
+                            Biodanza participant
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="embla__slide">
+                  <div className="mx-[15px]">
+                    <div
+                      className="max-w-3xl w-full mx-auto relative
+                    "
+                    >
+                      <div
+                        className="flex flex-col
+                      items-center"
+                      >
+                        <Image
+                          src="/images/participant-1-compressed.webp"
+                          alt="Profile photo of Maris"
+                          width={70}
+                          height={70}
+                          priority
+                          className="h-auto rounded-full mb-[15px]
+                        object-cover object-center"
+                        />
+                        <p
+                          className="text-center text-[22px]
+                      md:text-[24px] lg:text-[26px]"
+                        >
+                          Caroline is a wonderful teacher who holds a beautiful
+                          nurturing space where you can play, explore and
+                          discover the many joys and benefits of dancing
+                          Biodanza. Her classes are lovely!
+                        </p>
+                        <div className="mt-[15px] text-center">
+                          <div className="text-[#221c34] text-[18px] my-[10px]">
+                            Maris
+                          </div>
+
+                          <div className="text-[13px]">
+                            Biodanza participant
+                          </div>
                         </div>
                       </div>
                     </div>
