@@ -237,7 +237,7 @@ export default function HomePageSections() {
                   },
                   {
                     icon: Users,
-                    label: "Encounter",
+                    label: "Connection",
                     desc: "Enjoy to be more present and move with others",
                   },
                 ].map(({ icon: Icon, label, desc }) => (
@@ -336,7 +336,7 @@ export default function HomePageSections() {
               },
               {
                 icon: Sparkles,
-                title: "Awaken Joy & Vitality",
+                title: "Connect with Others",
                 body: "Biodanza promotes a deeper connection in a world that often feels disconnected. Through movement, music and shared experiences, you'll meet others in a welcoming and supportive environment, building meaningful connections with yourself and those around you.",
                 bg: "#f5e9b8",
               },

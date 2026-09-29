@@ -61,7 +61,9 @@ export default function HomeHero(): React.ReactElement {
       </div>
 
       <div
-        className="absolute -left-4 md:-left-8 top-[18%] bg-white rounded-xl md:rounded-2xl px-[clamp(0.75rem,0.5rem_+_1vw,1.25rem)] py-[clamp(0.5rem,0.3rem_+_0.75vw,0.875rem)] shadow-[0_8px_32px_rgba(30,42,58,0.12)]"
+        className="absolute -left-4 md:-left-8 top-[18%] bg-white rounded-xl md:rounded-2xl 
+        px-[clamp(0.75rem,0.5rem_+_1vw,1.25rem)] py-[clamp(0.5rem,0.3rem_+_0.75vw,0.875rem)] 
+        shadow-[0_8px_32px_rgba(30,42,58,0.12)]"
         style={fadeUp(1000)}
       >
         <p
@@ -186,79 +188,89 @@ export default function HomeHero(): React.ReactElement {
     <section className="bg-[#fff9f9]">
       <section className="max-w-275 mx-auto">
         <div
-          className="relative min-h-screen grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-8 lg:gap-12 overflow-hidden"
+          className="relative min-h-screen grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] md:items-start gap-8 lg:gap-12 overflow-hidden"
           style={{ fontFamily: "'DM Sans', sans-serif" }}
         >
-          <div className="relative z-10 flex flex-col justify-between pt-5 md:pt-30 pb-16 px-12 lg:px-20">
-            <div className="flex flex-col">
-              <div style={fadeUp(200)} className="flex items-center gap-3 mb-4">
-                <div
-                  className="inline-flex items-center text-blue-950 text-[clamp(0.7rem)]
-                uppercase tracking-[0.15em] bg-rose-300 rounded-full px-4 py-1.5"
-                >
-                  <span className="text-xs">
-                    {" "}
-                    Biodanza in Cardiff and South Wales
-                  </span>
-                </div>
-              </div>
-              <h1
-                style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontWeight: 400,
-                  ...fadeUp(350),
-                }}
-                className="text-[clamp(2.5rem,1rem_+_6.5vw,7.5rem)] leading-[0.95] tracking-tight text-[#1e2a3a] mb-10"
-              >
-                <span className="block">Move.</span>
-                <span className="block">Express.</span>
-                <span className="block italic font-light text-rose-500">
-                  Connect with yourself & others.
-                </span>
-              </h1>
-
-              <div style={fadeUp(450)} className="md:hidden mb-10">
-                {heroImage}
-              </div>
-
-              <p
-                style={fadeUp(550)}
-                className="order-2 md:order-0 mt-10 md:mt-0 mb-0 md:mb-10 text-[#1e2a3a]/70 text-base leading-relaxed max-w-[30ch]"
-              >
-                Biodanza (The Dance of Life) workshops with Caroline in the
-                South Wales area. Biodanza helps us to - Move, express, feel
-                more confidence and self-esteem, listen to our needs, nurture
-                ourselves, slow down, relax and boost our overall wellbeing.
-              </p>
-
+          {/* Row 1, col 1: eyebrow + heading + mobile-only image */}
+          <div className="relative z-10 flex flex-col pt-5 md:pt-30 px-12 lg:px-20">
+            <div style={fadeUp(200)} className="flex items-center gap-3 mb-4">
               <div
-                style={fadeUp(700)}
-                className="order-1 md:order-0 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-6"
+                className="inline-flex items-center text-blue-950 text-[clamp(0.7rem)]
+                uppercase tracking-[0.15em] bg-rose-300 rounded-full px-4 py-1.5"
               >
-                <Link
-                  href="/classes"
-                  className="inline-flex items-center gap-2.5 bg-[#1e2a3a] text-white rounded-full px-7 py-3.5 text-[0.8125rem] font-medium tracking-wide hover:bg-[#2d3f55] transition-all hover:-translate-y-px"
-                >
-                  Join a session
-                  <span
-                    className="w-5 h-5 shrink-0 rounded-full bg-white/15 flex items-center justify-center text-xs"
-                    aria-hidden="true"
-                  >
-                    →
-                  </span>
-                </Link>
-                <Link
-                  href="/about"
-                  className="inline-flex items-center gap-1.5 border border-rose-500 text-rose-500 rounded-full px-7 py-3.5 text-[0.8125rem] font-medium tracking-wide hover:bg-rose-50 hover:-translate-y-px transition-all"
-                >
-                  Learn more <span aria-hidden="true">→</span>
-                </Link>
+                <span className="text-xs">
+                  {" "}
+                  Biodanza in Cardiff and South Wales
+                </span>
               </div>
+            </div>
+            <h1
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontWeight: 400,
+                ...fadeUp(350),
+              }}
+              className="text-[clamp(2.5rem,1rem_+_6.5vw,7.5rem)] leading-[0.95] tracking-tight text-[#1e2a3a] mb-10"
+            >
+              <span className="block">Move.</span>
+              <span className="block">Express.</span>
+              <span className="block italic font-light text-rose-500">
+                Connect with yourself & others.
+              </span>
+            </h1>
+
+            <div style={fadeUp(450)} className="md:hidden mb-10">
+              {heroImage}
+            </div>
+          </div>
+
+          {/* Row 1, col 2-3: image (desktop only) */}
+          <div
+            className="relative z-10 hidden md:flex justify-center md:py-20 md:px-0 md:pr-10 md:col-start-2 
+          md:col-span-2"
+          >
+            {heroImage}
+          </div>
+
+          {/* Row 2, full width: paragraph + buttons + proof pills */}
+          <div className="relative z-10 flex flex-col md:items-center pb-16 md:pb-28 px-12 lg:px-20 md:col-span-3">
+            <p
+              style={fadeUp(550)}
+              className="order-2 md:order-0 mt-10 md:mt-0 mb-0 md:mb-10 text-[#1e2a3a]/70 text-base leading-relaxed md:text-center"
+            >
+              Biodanza (The Dance of Life) workshops with Caroline in the South
+              Wales area. Biodanza helps us to - Move, express, feel more
+              confidence and self-esteem, listen to our needs, nurture
+              ourselves, slow down, relax and boost our overall wellbeing.
+            </p>
+
+            <div
+              style={fadeUp(700)}
+              className="order-1 md:order-0 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-6"
+            >
+              <Link
+                href="/classes"
+                className="inline-flex items-center gap-2.5 bg-[#1e2a3a] text-white rounded-full px-7 py-3.5 text-[0.8125rem] font-medium tracking-wide hover:bg-[#2d3f55] transition-all hover:-translate-y-px"
+              >
+                Join a session
+                <span
+                  className="w-5 h-5 shrink-0 rounded-full bg-white/15 flex items-center justify-center text-xs"
+                  aria-hidden="true"
+                >
+                  →
+                </span>
+              </Link>
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-1.5 border border-rose-500 text-rose-500 rounded-full px-7 py-3.5 text-[0.8125rem] font-medium tracking-wide hover:bg-rose-50 hover:-translate-y-px transition-all"
+              >
+                Learn more <span aria-hidden="true">→</span>
+              </Link>
             </div>
 
             <ul
               style={fadeUp(850)}
-              className="flex flex-wrap gap-2 pt-8 mt-8 border-t border-[#1e2a3a]/10 list-none pl-0"
+              className="order-3 md:order-0 flex flex-wrap md:justify-center gap-2 pt-8 mt-8 border-t border-[#1e2a3a]/10 list-none pl-0"
             >
               {[
                 "100+ students",
@@ -269,10 +281,6 @@ export default function HomeHero(): React.ReactElement {
                 <ProofPill key={label} label={label} />
               ))}
             </ul>
-          </div>
-
-          <div className="relative z-10 hidden md:flex items-center justify-center md:py-20 md:px-0 md:pr-10 md:col-start-2 md:col-span-2">
-            {heroImage}
           </div>
 
           <div
