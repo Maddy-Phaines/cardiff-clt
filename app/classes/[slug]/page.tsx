@@ -4,6 +4,7 @@ import Breadcrumb from "@/components/ui/BreadCrumb";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import clsx from "clsx";
 
 import {
   Music,
@@ -23,7 +24,7 @@ import type { LucideIcon } from "lucide-react";
 import { classes } from "@/data/classes";
 import { getNextDate, formatDateLong, formatDateShort } from "@/lib/dates";
 
-const DANDELION_URL = "https://dandelion.events/u/biodanza_with_caroline";
+export const DANDELION_URL = "https://dandelion.events/u/biodanza_with_caroline";
 
 const expectIcons: Record<string, LucideIcon> = {
   music: Music,
@@ -56,13 +57,13 @@ const classData: ClassData = {
   subtitle:
     "A monthly space to drop in, move freely, and connect with others through music and guided dance. Suitable for complete beginners — no experience needed.",
   category: "Monthly Workshop",
-  imageSrc: "/images/caroline-profile.jpg",
+  imageSrc: "/images/participant-4-compressed.webp",
   imageAlt: "Group of people moving freely together in a dance session",
   duration: "2 Hours",
   location: "Sardis Chapel",
   locationAddress: "Sardis Chapel, Sardis Road, Pontypridd, CF37 1DU",
   level: "Open to all",
-  maxParticipants: 14,
+  maxParticipants: 20,
   about: [
     "Biodanza is a system of human integration developed by Rolando Toro that uses music, movement, and group encounters to evoke deep feelings of joy, connection, and aliveness. Unlike performance-based dance, there is no choreography to learn — only an invitation to move as you feel.",
     "Each session follows a carefully curated sequence of exercises called a vivencia, designed to progressively open the heart and awaken the senses. You'll move solo, in pairs, and as a group — always at your own pace and comfort level.",
@@ -97,8 +98,8 @@ const classData: ClassData = {
   },
   facilitator: {
     name: "Caroline",
-    title: "Certified Biodanza Teacher",
-    bio: "Caroline has been teaching Biodanza for 4+ years and trained at the IBFed Bristol School of Biodanza. Her classes are known for being warm, grounded, and genuinely welcoming to all.",
+    title: "Certified IBFed Biodanza Facilitator ",
+    bio: "Caroline has been teaching Biodanza for over 4 years and trained at the IBFed Bristol School of biodanza. Her classes are known for being warm, grounded, and welcoming to all.",
     imageSrc: "/images/caroline-profile.jpg",
   },
   whatToBring: [
@@ -124,9 +125,8 @@ const upcomingSessions = term.dates.map((dateStr) => {
     location: featuredClass.location,
     isNext: dateStr === nextDate,
     bookingUrl:
-      (term.dandelionUrls as Record<string, string> | undefined)?.[
-        dateStr
-      ] ?? DANDELION_URL,
+      (term.dandelionUrls as Record<string, string> | undefined)?.[dateStr] ??
+      DANDELION_URL,
   };
 });
 const lowestRate = Math.min(
@@ -151,9 +151,15 @@ const MetaPill = ({
   );
 };
 
-function SectionLabel({ text }: { text: string }): React.ReactElement {
+export function SectionLabel({
+  text,
+  className,
+}: {
+  text: string;
+  className?: string;
+}): React.ReactElement {
   return (
-    <div className="flex items-center gap-3 mb-5">
+    <div className={clsx(`flex items-center gap-3 mb-5 class`, className)}>
       <div className="w-6 h-px bg-rose-500" />
       <span className="text-[0.7rem] uppercase tracking-[0.2em] text-rose-500 font-medium">
         {text}

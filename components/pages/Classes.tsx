@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
+import { SectionLabel, DANDELION_URL } from "@/app/classes/[slug]/page";
 import { SectionEyebrow } from "../ui/SectionEyebrow";
 import { classes } from "@/data/classes";
 import { getNextDate, formatDateLong, formatDateShort } from "@/lib/dates";
@@ -31,23 +32,24 @@ interface Expectation {
 interface FaqItem {
   q: string;
   a: string;
+  answerNode?: React.ReactNode;
 }
 
 const expectations: Expectation[] = [
   {
     icon: Music4,
-    title: "Curated music",
+    title: "Beautiful World Music",
     text: "Carefully chosen music guides every exercise and sets the emotional tone for the session.",
   },
   {
     icon: Waves,
-    title: "Free expression",
+    title: "Expression",
     text: "No choreography to learn — only an invitation to move as you feel, naturally and freely.",
   },
   {
     icon: HeartHandshakeIcon,
-    title: "Human connection",
-    text: "Partner and group exercises that build genuine trust, empathy and a sense of belonging.",
+    title: "Connection to Oneself & Others",
+    text: "Through shared movement experiences, Biodanza fosters meaningful connections with others. Simple partner and group activities help create trust, empathy, belonging and a deeper sense of community.",
   },
 ];
 
@@ -63,6 +65,22 @@ const faqs: FaqItem[] = [
   {
     q: "How do I book a place?",
     a: "Email biodanzawithcaroline@gmail.com to reserve your place or book via Dandelion events.",
+    answerNode: (
+      <>
+        Email biodanzawithcaroline@gmail.com to reserve your place or book
+        via{" "}
+        <Link
+          href={DANDELION_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[#c4705a] underline underline-offset-2 hover:text-[#1e2a3a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400 focus-visible:ring-offset-2 rounded transition-colors"
+        >
+          Caroline&apos;s Dandelion events page
+          <span className="sr-only"> (opens in a new tab)</span>
+        </Link>
+        .
+      </>
+    ),
   },
   {
     q: "Can I come just once to try it?",
@@ -153,7 +171,7 @@ function FaqAccordion({ items }: { items: FaqItem[] }): React.ReactElement {
             >
               <div className="overflow-hidden">
                 <p className="text-[0.875rem] text-stone-600 leading-[1.75] pb-[18px]">
-                  {item.a}
+                  {item.answerNode ?? item.a}
                 </p>
               </div>
             </div>
@@ -252,11 +270,15 @@ export const Classes = () => {
         rates={featuredClass.rates}
       />
 
-      <section className="" aria-label="Classes hero">
-        <div className="max-w-275 mx-auto px-5 sm:px-8 pt-14 pb-16 grid grid-cols-1 lg:grid-cols-[55%_45%] gap-12 lg:gap-8 items-center">
+      <section className="max-w-275 mx-auto" aria-label="Classes hero">
+        <div
+          className="px-5 sm:px-8 pt-14 pb-16 grid grid-cols-1
+        md:grid-cols-[1fr_1fr]
+        lg:grid-cols-[11fr_9fr] gap-12 lg:gap-8 items-center"
+        >
           <div>
             <div style={fadeUp(200)}>
-              <SectionEyebrow text="Biodanza classes · Sardis Chapel, Pontypridd" />
+              <SectionLabel text="Biodanza classes · Sardis Chapel, Pontypridd" />
             </div>
 
             <h1
@@ -276,9 +298,9 @@ export const Classes = () => {
               style={fadeUp(550)}
               className="text-[1rem] max-w-[40ch] text-[#1e2a3a] leading-relaxed mb-8"
             >
-              A monthly Sunday class in Pontypridd for all levels — no
+              Monthly Sunday classes in Pontypridd for all ability levels - No
               experience, no performance, no judgement. Just music, movement and
-              genuine human connection.
+              joyful human connection.
             </p>
 
             {nextDate && (
@@ -320,8 +342,8 @@ export const Classes = () => {
               {[
                 "4+ years teaching",
                 "All levels welcome",
+                "IBFed Trained Facilitator",
                 "From £8 per class",
-                "BSCO-affiliated facilitator",
               ].map((item) => (
                 <li key={item} className="flex items-center gap-1.5">
                   <span
@@ -334,22 +356,31 @@ export const Classes = () => {
             </ul>
           </div>
 
-          <div className="hidden lg:flex justify-center items-end relative">
+          <div className="md:flex hidden justify-center items-end relative">
             <div
-              className="absolute -inset-3 rounded-t-[999px] border border-rose-500/25 pointer-events-none"
-              aria-hidden="true"
-            />
-
-            <div className="relative w-52 xl:w-80 overflow-hidden rounded-t-[999px] rounded-b-none aspect-3/4 shadow-lg">
-              <Image
-                src="/images/caroline-profile.webp"
-                alt="Participants moving joyfully together in a Biodanza session at Sardis Chapel, Pontypridd"
-                fill
-                sizes="(min-width: 1024px) 320px, 0px"
-                className="object-cover object-top"
-                loading="eager"
-                fetchPriority="high"
+              className="relative w-[clamp(13rem,34vw,22rem)]
+            aspect-3/4"
+            >
+              <div
+                className="absolute -inset-3 
+                rounded-t-[999px] border border-rose-500/25 
+              pointer-events-none"
+                aria-hidden="true"
               />
+              <div
+                className="relative w-full h-full overflow-hidden rounded-t-[999px]
+              rounded-b-none shadow-lg"
+              >
+                <Image
+                  src="/images/classes-hero-group.webp"
+                  alt="Participants moving joyfully together in a Biodanza session at Sardis Chapel, Pontypridd"
+                  fill
+                  sizes="(min-width: 768px) clamp(13rem, 34vw, 22rem), 0px"
+                  className="object-cover object-top"
+                  loading="eager"
+                  fetchPriority="high"
+                />
+              </div>
             </div>
 
             <div
@@ -361,10 +392,10 @@ export const Classes = () => {
                 className="text-[2rem] leading-none text-[#1e2a3a]"
                 style={{ fontFamily: "'Cormorant Garamond', serif" }}
               >
-                £8
+                From £8
               </p>
               <p className="text-[0.8125rem] text-stone-500 mt-0.5">
-                From, per class
+                per class
               </p>
             </div>
           </div>
@@ -376,7 +407,7 @@ export const Classes = () => {
         className="max-w-275 mx-auto pt-16 px-5 sm:px-8 pb-20"
       >
         <FadeIn>
-          <SectionEyebrow text="What to expect" className="mb-5" />
+          <SectionLabel text="What to expect" className="mb-5" />
           <div className="bg-[#eedad1] rounded-3xl grid grid-cols-1 md:grid-cols-3 gap-6 px-10 py-10">
             {expectations.map((expect, i) => {
               const Icon = expect.icon;
@@ -408,7 +439,7 @@ export const Classes = () => {
         aria-labelledby="class-card-heading"
       >
         <div className="max-w-275 mx-auto">
-          <SectionEyebrow text="Current class" />
+          <SectionLabel text="Current class" />
           <FadeIn>
             <div
               className="grid grid-cols-1 md:grid-cols-[240px_2fr] bg-white border
@@ -484,7 +515,7 @@ export const Classes = () => {
 
       <section className="px-5 sm:px-8 pt-16 pb-5 bg-[#f8edeb]">
         <div className="max-w-275 mx-auto">
-          <SectionEyebrow text={`${term.name} · Session dates`} />
+          <SectionLabel text={`${term.name} · Session dates`} />
           <FadeIn>
             <div
               className="grid grid-cols-3 gap-px rounded-3xl overflow-hidden bg-[#1e2a3a]"
@@ -543,8 +574,8 @@ export const Classes = () => {
       </section>
 
       <section className="px-5 sm:px-8 py-16 bg-[#f8edeb]">
-        <div className="max-w-275 mx-auto">
-          <SectionEyebrow text="Pricing" />
+        <div className="max-w-275 mx-auto flex flex-col items-center">
+          <SectionLabel text="Pricing" />
           <FadeIn>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 max-w-205 mx-auto">
               {featuredClass.rates.map((rate) => (
@@ -576,7 +607,7 @@ export const Classes = () => {
                 Book your place →
               </a>
               <span className="text-[0.8125rem] text-stone-600">
-                No booking system needed — just email Caroline
+                To book a place, just email Caroline
               </span>
             </div>
           </FadeIn>
@@ -584,8 +615,8 @@ export const Classes = () => {
       </section>
 
       <section className="py-16 px-5 sm:px-8">
-        <div className="max-w-[1100px] mx-auto">
-          <SectionEyebrow text="Common questions" />
+        <div className="max-w-[1100px] mx-auto flex flex-col items-center">
+          <SectionLabel text="Common questions" />
           <FaqAccordion items={faqs} />
         </div>
       </section>
@@ -614,7 +645,7 @@ export const Classes = () => {
                   fontWeight: 300,
                 }}
               >
-                Ready to come along?
+                Ready to move, connect and belong?
               </h2>
               <p className="text-[0.9rem] text-white/55 max-w-[38ch] mx-auto mb-7 leading-[1.7] relative z-10">
                 There is nothing to prepare — just turn up and be yourself.
