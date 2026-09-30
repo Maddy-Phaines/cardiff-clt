@@ -22,6 +22,7 @@ import { EmblaCarousel } from "@/components/ui/EmblaCarousel";
 import { SectionEyebrow } from "../ui/SectionEyebrow";
 import { classes } from "@/data/classes";
 import { getUpcomingDates, formatDateShort } from "@/lib/dates";
+import { DANDELION_URL } from "@/app/classes/[slug]/page";
 
 function FadeIn({
   children,
@@ -223,7 +224,7 @@ export default function HomePageSections() {
                 up.
               </p>
 
-              <div className="grid grid-cols-3 gap-6 mb-10">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
                 {[
                   {
                     icon: Music,
@@ -400,11 +401,14 @@ export default function HomePageSections() {
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link
-                  href="mailto:biodanzawithcaroline@gmail.com?subject=Booking enquiry"
+                  href={DANDELION_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2.5 bg-white text-[#1e2a3a] rounded-full px-7 py-3.5 text-[0.8125rem] font-medium hover:bg-[#f5f0e6] transition-all hover:-translate-y-px"
                   style={{ fontFamily: "'DM Sans', sans-serif" }}
                 >
                   Reserve your place
+                  <span className="sr-only"> (opens in a new tab)</span>
                   <span
                     className="w-5 h-5 rounded-full bg-[#1e2a3a]/10 flex items-center justify-center text-xs"
                     aria-hidden="true"

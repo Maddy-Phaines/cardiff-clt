@@ -11,7 +11,7 @@ interface ProofPillProps {
 }
 
 const ProofPill: React.FC<ProofPillProps> = ({ label }) => (
-  <li className="inline-flex items-center gap-1.5 bg-[#1e2a3a]/[0.06] rounded-full px-3.5 py-1.5 text-[0.8125rem] text-[#1e2a3a]/75 tracking-wide">
+  <li className="inline-flex items-center gap-1.5 whitespace-nowrap bg-[#1e2a3a]/[0.06] rounded-full px-3.5 py-1.5 text-[0.8125rem] text-[#1e2a3a]/75 tracking-wide">
     <span
       className="w-1 h-1 rounded-full bg-rose-500 inline-block"
       aria-hidden="true"
@@ -34,7 +34,7 @@ export default function HomeHero(): React.ReactElement {
   };
 
   const heroImage = (
-    <div className="relative w-full">
+    <div className="relative w-full md:h-full">
       <div
         className="absolute -top-6 -right-2 md:-right-6 w-full h-full rounded-t-[999px] border
        border-rose-400/30 pointer-events-none"
@@ -42,7 +42,7 @@ export default function HomeHero(): React.ReactElement {
       />
 
       <div
-        className="relative w-full aspect-square md:aspect-3/4 rounded-t-[999px] overflow-hidden
+        className="relative w-full h-full aspect-square md:aspect-auto rounded-t-[999px] overflow-hidden
     shadow-[0_32px_80px_rgba(30,42,58,0.18),0_8px_20px_rgba(30,42,58,0.08)]"
       >
         <Image
@@ -188,11 +188,11 @@ export default function HomeHero(): React.ReactElement {
     <section className="bg-[#fff9f9]">
       <section className="max-w-275 mx-auto">
         <div
-          className="relative min-h-screen grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] md:items-start gap-8 lg:gap-12 overflow-hidden"
+          className="relative min-h-screen grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-8 lg:gap-12 overflow-hidden"
           style={{ fontFamily: "'DM Sans', sans-serif" }}
         >
           {/* Row 1, col 1: eyebrow + heading + mobile-only image */}
-          <div className="relative z-10 flex flex-col pt-5 md:pt-30 px-12 lg:px-20">
+          <div className="relative z-10 flex flex-col pt-5 md:pt-30 px-6 sm:px-10 md:px-12 lg:px-20">
             <div style={fadeUp(200)} className="flex items-center gap-3 mb-4">
               <div
                 className="inline-flex items-center text-blue-950 text-[clamp(0.7rem)]
@@ -226,14 +226,14 @@ export default function HomeHero(): React.ReactElement {
 
           {/* Row 1, col 2-3: image (desktop only) */}
           <div
-            className="relative z-10 hidden md:flex justify-center md:py-20 md:px-0 md:pr-10 md:col-start-2 
+            className="relative z-10 hidden md:flex justify-center md:py-4 md:px-0 md:pr-10 md:col-start-2 
           md:col-span-2"
           >
             {heroImage}
           </div>
 
           {/* Row 2, full width: paragraph + buttons + proof pills */}
-          <div className="relative z-10 flex flex-col md:items-center pb-16 md:pb-28 px-12 lg:px-20 md:col-span-3">
+          <div className="relative z-10 flex flex-col md:items-center pb-16 md:pb-28 px-6 sm:px-10 md:px-12 lg:px-20 md:col-span-3">
             <p
               style={fadeUp(550)}
               className="order-2 md:order-0 mt-10 md:mt-0 mb-0 md:mb-10 text-[#1e2a3a]/70 text-base leading-relaxed md:text-center"

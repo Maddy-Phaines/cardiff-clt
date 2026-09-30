@@ -57,7 +57,7 @@ const classData: ClassData = {
   subtitle:
     "A monthly space to drop in, move freely, and connect with others through music and guided dance. Suitable for complete beginners — no experience needed.",
   category: "Monthly Workshop",
-  imageSrc: "/images/participant-4-compressed.webp",
+  imageSrc: "/images/classes-hero-group.webp",
   imageAlt: "Group of people moving freely together in a dance session",
   duration: "2 Hours",
   location: "Sardis Chapel",

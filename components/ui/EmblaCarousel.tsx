@@ -3,12 +3,32 @@
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
+import { useEffect, useState } from "react";
 import "./EmblaCarousel.css";
 export function EmblaCarousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false });
+  const [height, setHeight] = useState<number>();
 
   const goToPrev = () => emblaApi?.scrollPrev();
   const goToNext = () => emblaApi?.scrollNext();
+
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    const updateHeight = () => {
+      const activeSlide = emblaApi.slideNodes()[emblaApi.selectedScrollSnap()];
+      if (activeSlide) setHeight(activeSlide.offsetHeight);
+    };
+
+    updateHeight();
+    emblaApi.on("select", updateHeight);
+    emblaApi.on("reInit", updateHeight);
+
+    return () => {
+      emblaApi.off("select", updateHeight);
+      emblaApi.off("reInit", updateHeight);
+    };
+  }, [emblaApi]);
 
   return (
     <section aria-labelledby="testimonials-heading" className="bg-[#f7f1ee]">
@@ -32,7 +52,11 @@ export function EmblaCarousel() {
             </h2>
           </div>
           <div className="embla relative overflow-hidden">
-            <div className="embla__viewport overflow-hidden" ref={emblaRef}>
+            <div
+              className="embla__viewport overflow-hidden transition-[height] duration-300 ease-out"
+              style={height ? { height } : undefined}
+              ref={emblaRef}
+            >
               <div className="embla__container">
                 <div className="embla__slide">
                   <div className="mx-3.75">
@@ -252,9 +276,9 @@ export function EmblaCarousel() {
               <div className="relative w-full max-w-3xl">
                 <button
                   className="embla__prev bg-white rounded-full
-                   flex items-center
+                   flex items-center shadow-md
                    p-4 pointer-events-auto cursor-pointer absolute
-                  -left-12 top-1/2 -translate-y-1/2"
+                  left-2 top-1/2 -translate-y-1/2"
                   onClick={goToPrev}
                   aria-label="Previous testimonial"
                 >
@@ -263,9 +287,9 @@ export function EmblaCarousel() {
 
                 <button
                   className="embla__next bg-white rounded-full
-                   flex items-center
+                   flex items-center shadow-md
                    p-4 pointer-events-auto cursor-pointer absolute
-                  -right-12 top-1/2 -translate-y-1/2"
+                  right-2 top-1/2 -translate-y-1/2"
                   onClick={goToNext}
                   aria-label="Next testimonial"
                 >

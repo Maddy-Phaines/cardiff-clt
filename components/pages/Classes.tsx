@@ -319,9 +319,11 @@ export const Classes = () => {
 
             <div style={fadeUp(700)} className="flex flex-wrap gap-3 mb-10">
               <a
-                href="mailto:biodanzawithcaroline@gmail.com?subject=Class%20booking%20enquiry"
+                href={DANDELION_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-[#1e2a3a] text-white text-[0.9375rem] font-medium px-6 py-3 rounded-full hover:bg-[#2d3f55] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1e2a3a] focus-visible:ring-offset-2 focus-visible:ring-offset-[#f5ede8]"
-                aria-label="Email Caroline to book a Biodanza class"
+                aria-label="Book a Biodanza class on Dandelion Events (opens in a new tab)"
               >
                 Book a place
                 <MoveRight size={16} aria-hidden="true" />
@@ -500,11 +502,13 @@ export const Classes = () => {
                     <MoveRight size={15} aria-hidden="true" />
                   </Link>
                   <a
-                    href="mailto:biodanzawithcaroline@gmail.com?subject=Class booking enquiry"
-                    aria-label="Email Caroline to book a Biodanza class"
+                    href={DANDELION_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Book a Biodanza class on Dandelion Events (opens in a new tab)"
                     className="inline-flex items-center gap-1.5 px-7 py-3 text-[0.8125rem] tracking-wide border border-[#1e2a3a] hover:bg-[#1e2a3a] hover:text-white transition-colors rounded-full text-[#1e2a3a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1e2a3a] focus-visible:ring-offset-2"
                   >
-                    Email to book
+                    Book on Dandelion
                   </a>
                 </div>
               </div>
@@ -601,13 +605,16 @@ export const Classes = () => {
 
             <div className="flex flex-wrap items-center gap-x-5 gap-y-3 mt-6 max-w-175 mx-auto">
               <a
-                href="mailto:biodanzawithcaroline@gmail.com?subject=Booking enquiry"
+                href={DANDELION_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Book a Biodanza class on Dandelion Events (opens in a new tab)"
                 className="inline-flex items-center gap-2 bg-[#1e2a3a] text-white rounded-full px-6 py-2.5 text-[0.8125rem] font-medium hover:bg-[#2d3f55] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1e2a3a] focus-visible:ring-offset-2"
               >
                 Book your place →
               </a>
               <span className="text-[0.8125rem] text-stone-600">
-                To book a place, just email Caroline
+                Booking takes place via Dandelion Events
               </span>
             </div>
           </FadeIn>
@@ -652,10 +659,13 @@ export const Classes = () => {
               </p>
               <div className="flex gap-3 justify-center flex-wrap relative z-10">
                 <a
-                  href="mailto:biodanzawithcaroline@gmail.com?subject=Booking enquiry"
+                  href={DANDELION_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Book a Biodanza class on Dandelion Events (opens in a new tab)"
                   className="inline-flex items-center gap-2 bg-[#c4705a] text-white rounded-full px-7 py-3.5 text-[0.8125rem] font-medium tracking-[0.1em] hover:bg-[#b5614d] transition-colors hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1e2a3a]"
                 >
-                  Email to book →
+                  Book on Dandelion →
                 </a>
                 <Link
                   href="/contact"
