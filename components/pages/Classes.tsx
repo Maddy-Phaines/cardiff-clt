@@ -449,7 +449,7 @@ export const Classes = () => {
             >
               <div className="relative min-h-55 md:min-h-75">
                 <Image
-                  src="/images/class-group-celebration.jpeg"
+                  src="/images/class-group-celebration.webp"
                   alt="Participants moving joyfully together in a Biodanza session at Sardis Chapel, Pontypridd"
                   fill
                   className="object-cover"

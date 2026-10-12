@@ -64,8 +64,8 @@ export default function Header() {
                     onClick={closeMenu}
                     href={link.path}
                     className={clsx(
-                      "font-semibold hover:text-rose-500",
-                      pathname === link.path && "text-rose-500",
+                      "font-semibold hover:text-rose-600",
+                      pathname === link.path && "text-rose-600",
                     )}
                   >
                     {link.name}

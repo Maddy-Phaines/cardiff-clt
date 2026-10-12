@@ -262,7 +262,7 @@ export default function HomeHero(): React.ReactElement {
               </Link>
               <Link
                 href="/about"
-                className="inline-flex items-center gap-1.5 border border-rose-500 text-rose-500 rounded-full px-7 py-3.5 text-[0.8125rem] font-medium tracking-wide hover:bg-rose-50 hover:-translate-y-px transition-all"
+                className="inline-flex items-center gap-1.5 border border-rose-700 text-rose-700 rounded-full px-7 py-3.5 text-[0.8125rem] font-medium tracking-wide hover:bg-rose-50 hover:-translate-y-px transition-all"
               >
                 Learn more <span aria-hidden="true">→</span>
               </Link>

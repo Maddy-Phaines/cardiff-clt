@@ -136,7 +136,7 @@ export default function ContactPage() {
                     <p className="text-[0.7rem] uppercase tracking-[0.16em] text-[#1e2a3a]/70 mb-0.5">
                       {label}
                     </p>
-                    <p className="text-[0.9375rem] font-medium text-[#1e2a3a] group-hover:text-rose-500 transition-colors truncate">
+                    <p className="text-[0.9375rem] font-medium text-[#1e2a3a] group-hover:text-rose-600 transition-colors truncate">
                       {display}
                     </p>
                   </div>
@@ -175,7 +175,7 @@ export default function ContactPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`Follow on ${label}`}
-                  className="w-10 h-10 rounded-full border border-stone-200 flex items-center justify-center text-[#1e2a3a]/50 hover:text-rose-500 hover:border-rose-200 transition-colors"
+                  className="w-10 h-10 rounded-full border border-stone-200 flex items-center justify-center text-[#1e2a3a]/50 hover:text-rose-600 hover:border-rose-200 transition-colors"
                 >
                   <Icon className="w-4 h-4" aria-hidden="true" />
                 </a>
@@ -204,7 +204,7 @@ export default function ContactPage() {
               </p>
               <Link
                 href="/classes"
-                className="text-[0.9375rem] text-[#1e2a3a] font-medium hover:text-rose-500 transition-colors inline-flex items-center gap-1.5"
+                className="text-[0.9375rem] text-[#1e2a3a] font-medium hover:text-rose-600 transition-colors inline-flex items-center gap-1.5"
               >
                 Browse upcoming classes <span aria-hidden="true">→</span>
               </Link>

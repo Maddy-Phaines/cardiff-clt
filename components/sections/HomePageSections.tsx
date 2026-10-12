@@ -122,19 +122,20 @@ export default function HomePageSections() {
                 style={{ fontFamily: "'DM Sans', sans-serif" }}
               >
                 In 2016, feeling lonely and disconnected, I attended my first
-                session. From that moment I felt a freedom in my body I hadn't
-                known before — the freedom to move without judgement, and to
-                connect to others without words.
+                session. From that moment I felt a freedom in my body I
+                hadn&apos;t known before — the freedom to move without
+                judgement, and to connect to others without words.
               </p>
               {/* Can run in tandem with/complemented by breathwork, yoga, sound baths, somatic healing */}
               <p
                 className="text-[#1e2a3a]/60 text-[1.0625rem] leading-relaxed mb-8 max-w-[52ch]"
                 style={{ fontFamily: "'DM Sans', sans-serif" }}
               >
-                Nearly eleven years on, I'm now a qualified Biodanza facilitator
-                who has been teaching for 4+ years across South Wales. I love to
-                share this practice because of how deeply it has supported me —
-                and I hope to offer others that same opportunity.
+                Nearly eleven years on, I&apos;m now a qualified Biodanza
+                facilitator who has been teaching for 4+ years across South
+                Wales. I love to share this practice because of how deeply it
+                has supported me — and I hope to offer others that same
+                opportunity.
               </p>
 
               <div className="flex flex-wrap gap-2 mb-8">
@@ -182,7 +183,7 @@ export default function HomePageSections() {
                 />
                 <div className="relative aspect-3/4 lg:aspect-auto lg:h-full rounded-t-[999px] rounded-b-3xl overflow-hidden shadow-[0_24px_64px_rgba(30,42,58,0.16)]">
                   <Image
-                    src="/images/caroline-profile-cropped.png"
+                    src="/images/caroline-profile-cropped.webp"
                     alt="Caroline, Biodanza teacher"
                     fill
                     className="object-cover object-top"

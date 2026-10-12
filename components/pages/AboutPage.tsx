@@ -286,7 +286,7 @@ px-4 py-1.5 mb-6"
               />
               <div className="relative w-full aspect-3/4 rounded-t-[999px] overflow-hidden shadow-[0_24px_60px_rgba(30,42,58,0.15)]">
                 <Image
-                  src="/images/caroline-profile.jpg"
+                  src="/images/caroline-profile.webp"
                   alt="Caroline dancing joyfully in a field of yellow flowers"
                   fill
                   className="object-cover object-top"
