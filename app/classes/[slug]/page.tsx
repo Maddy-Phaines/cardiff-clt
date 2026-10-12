@@ -24,7 +24,8 @@ import type { LucideIcon } from "lucide-react";
 import { classes } from "@/data/classes";
 import { getNextDate, formatDateLong, formatDateShort } from "@/lib/dates";
 
-export const DANDELION_URL = "https://dandelion.events/u/biodanza_with_caroline";
+export const DANDELION_URL =
+  "https://dandelion.events/u/biodanza_with_caroline";
 
 const expectIcons: Record<string, LucideIcon> = {
   music: Music,
@@ -100,7 +101,7 @@ const classData: ClassData = {
     name: "Caroline",
     title: "Certified IBFed Biodanza Facilitator ",
     bio: "Caroline has been teaching Biodanza for over 4 years and trained at the IBFed Bristol School of biodanza. Her classes are known for being warm, grounded, and welcoming to all.",
-    imageSrc: "/images/caroline-profile.jpg",
+    imageSrc: "/images/caroline-profile.webp",
   },
   whatToBring: [
     "Comfortable, loose clothing",
@@ -160,8 +161,8 @@ export function SectionLabel({
 }): React.ReactElement {
   return (
     <div className={clsx(`flex items-center gap-3 mb-5 class`, className)}>
-      <div className="w-6 h-px bg-rose-500" />
-      <span className="text-[0.7rem] uppercase tracking-[0.2em] text-rose-500 font-medium">
+      <div className="w-6 h-px bg-rose-700" />
+      <span className="text-[0.7rem] uppercase tracking-[0.2em] text-rose-700 font-medium">
         {text}
       </span>
     </div>
@@ -230,6 +231,10 @@ function SessionRow({
       </span>
     </Link>
   );
+}
+
+export function generateStaticParams() {
+  return classes.map((c) => ({ slug: c.slug.replace(/^\//, "") }));
 }
 
 export default function ClassDetailPage() {
