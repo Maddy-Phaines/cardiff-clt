@@ -337,7 +337,7 @@ px-4 py-1.5 mb-6"
       </section>
       <section
         id="my-story"
-        className="max-w-275 mx-auto md:py-20 px-5 sm:px-8"
+        className="max-w-275 mx-auto py-4 md:py-20 px-5 sm:px-8"
       >
         <div className="grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-12 lg:gap-16 items-center">
           <div className="relative overflow-hidden aspect-3/4 rounded-3xl shadow-sm">
@@ -369,24 +369,36 @@ px-4 py-1.5 mb-6"
               How I found Biodanza and what it has done for me
             </h2>
             <p className="text-[0.9375rem] text-stone-600 leading-[1.75] mb-5">
-              I came to Biodanza at a time when I was searching for something —
-              though I couldn't have told you what. I'd tried yoga, meditation,
-              therapy. All helpful in their own ways. But something was missing.
-              When a friend dragged me to a class one rainy Tuesday evening,
-              everything shifted.
+              I first discovered Biodanza in 2016 when I felt something was
+              lacking in my life. I had recently finished university and felt
+              very lonely and a general dissatisfaction with where I was at and
+              what I was doing with my life. I was craving more meaningful
+              connection with others as well as with myself.
             </p>
             <p className="text-[0.9375rem] text-stone-600 leading-[1.75] mb-5">
-              For the first time in years, I felt genuinely present in my body.
-              Not performing movement, not thinking about it — just moving. The
-              music held me, the group held me, and something in me that had
-              been very quiet for a long time started to stir.
+              I remember walking into the first session and felt I could move
+              with freedom and connect with others in a playful, non-verbal way.
+              I felt the loneliness wedged in my body start to ease week after
+              week and start to find my spark and find out how creative I was
+              just as myself! I remember discovering just how joyful it felt to
+              move in the way I wanted to and not what was expected of me or how
+              I would be perceived. This was a freedom I had been craving for a
+              long time. I felt like I had come home to my body and started to
+              discover who I was.
             </p>
             <p className="text-[0.9375rem] text-stone-600 leading-[1.75] mb-5">
               {" "}
-              I trained as a Biodanza facilitator with the International
-              Biocentric Foundation and have been teaching weekly classes in
-              South Wales ever since. Every session still surprises me. That is
-              the gift of Biodanza.
+              By doing Biodanza, I have grown in confidence, self-esteem and the
+              ability to listen and connect to myself and my needs. I feel more
+              freedom to express myself in my own life. I feel more connected to
+              others and to nature too.
+            </p>
+            <p className="text-[0.9375rem] text-stone-600 leading-[1.75] mb-5">
+              {" "}
+              Fast forward 10 years, I’m now a fully trained facilitator who is
+              very eager to share the benefits of the system with others in my
+              community just as it’s benefited me and promoted growth in my own
+              life.
             </p>
             <Link
               className="inline-flex gap-1.5 items-center px-7 py-3.5 text-[0.8125rem] rounded-full bg-blue-950 text-white tracking-[0.15em] font-medium"
