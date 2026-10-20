@@ -55,7 +55,7 @@ export default function Header() {
             <ul
               className={clsx(
                 "flex flex-col md:flex-row items-center gap-8 fixed md:static top-0 right-0 bottom-0 w-1/2 md:w-auto p-8 md:p-0 transition-transform duration-300 ease-in-out md:translate-x-0 md:bg-transparent",
-                menuOpen ? "translate-x-0 bg-rose-300" : "translate-x-full",
+                menuOpen ? "translate-x-0 bg-rose-400" : "translate-x-full",
               )}
             >
               {navLinks.map((link) => (

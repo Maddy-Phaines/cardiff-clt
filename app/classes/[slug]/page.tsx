@@ -95,7 +95,7 @@ const classData: ClassData = {
     quote:
       "Caroline has such a gentle, containing presence and she encourages everyone to try the exercises to their ability level with no judgement, promoting an accepting and inclusive atmosphere.",
     name: "Jill Lubienski",
-    role: "Biodanza Customer",
+    role: "Biodanza Participant",
   },
   facilitator: {
     name: "Caroline",

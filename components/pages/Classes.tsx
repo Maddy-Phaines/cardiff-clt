@@ -44,7 +44,7 @@ const expectations: Expectation[] = [
   {
     icon: Waves,
     title: "Expression",
-    text: "No choreography to learn — only an invitation to move as you feel, naturally and freely.",
+    text: "There are no steps to learn and no performances to perfect. Biodanza invites you to explore movement in your own way, encouraging authenticity, creativity and freedom of expression through music and guided experiences.",
   },
   {
     icon: HeartHandshakeIcon,
@@ -67,8 +67,7 @@ const faqs: FaqItem[] = [
     a: "Email biodanzawithcaroline@gmail.com to reserve your place or book via Dandelion events.",
     answerNode: (
       <>
-        Email biodanzawithcaroline@gmail.com to reserve your place or book
-        via{" "}
+        Email biodanzawithcaroline@gmail.com to reserve your place or book via{" "}
         <Link
           href={DANDELION_URL}
           target="_blank"
@@ -196,7 +195,7 @@ function StructuredData({
     "@type": "Event",
     name: `${title} with Caroline`,
     description:
-      "A monthly Biodanza group class for all abilities at Sardis Chapel, Pontypridd. Guided by music, movement, and human encounter. No experience needed.",
+      "A monthly Biodanza group class for all abilities at Sardis Chapel, Pontypridd. Guided by music, movement, and human connection. No experience needed.",
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     eventStatus: "https://schema.org/EventScheduled",
     startDate: term.dates[0],
@@ -652,7 +651,7 @@ export const Classes = () => {
                   fontWeight: 300,
                 }}
               >
-                Ready to move, connect and belong?
+                Ready to move, express and connect?
               </h2>
               <p className="text-[0.9rem] text-white/55 max-w-[38ch] mx-auto mb-7 leading-[1.7] relative z-10">
                 There is nothing to prepare — just turn up and be yourself.
