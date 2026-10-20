@@ -1,32 +1,36 @@
 import clsx from "clsx";
 
+// Colours chosen to pass WCAG AA (4.5:1) on their section backgrounds
+const toneClass = {
+  rose: "text-rose-700",
+  terracotta: "text-[#a4513e]",
+  onDark: "text-[#e0a08c]",
+};
+
 export function SectionEyebrow({
   text,
   center = false,
   onDark = false,
+  tone = "rose",
   className,
 }: {
   text: string;
   center?: boolean;
   onDark?: boolean;
+  tone?: "rose" | "terracotta";
   className?: string;
 }): React.ReactElement {
-  const textClass = onDark ? "text-[#c7d8d4]" : "text-[#114945]";
-  const lineClass = onDark ? "bg-[#c7d8d4]" : "bg-[#114945]";
-
   return (
-    <div
+    <p
       className={clsx(
-        `flex items-center gap-3 ${center ? "mx-auto w-fit" : ""}`,
+        "mb-3 text-[1.25rem] leading-snug italic font-medium tracking-[0.08em]",
+        center && "text-center",
+        onDark ? toneClass.onDark : toneClass[tone],
         className,
       )}
+      style={{ fontFamily: "var(--font-cormorant), serif" }}
     >
-      <div className={`w-6 h-px ${lineClass}`} aria-hidden="true" />
-      <span
-        className={`text-[0.7rem] uppercase tracking-[0.2em] font-medium ${textClass}`}
-      >
-        {text}
-      </span>
-    </div>
+      {text}
+    </p>
   );
 }

@@ -308,7 +308,7 @@ export default function HomePageSections() {
         <div className="max-w-5xl mx-auto">
           <FadeIn>
             <div className="text-center mb-16">
-              <SectionEyebrow text="The Benefits" center />
+              <SectionEyebrow text="The benefits" center />
               <h2
                 className="text-[clamp(2rem,3.5vw,3rem)] leading-[1.06] tracking-[-0.02em] text-[#1e2a3a]"
                 style={{
@@ -380,7 +380,7 @@ export default function HomePageSections() {
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <FadeIn>
-              <SectionEyebrow text="Next Session" onDark />
+              <SectionEyebrow text="Next session" onDark />
               <h2
                 className="text-[clamp(2.2rem,4vw,3.5rem)] leading-[1.06] tracking-[-0.02em] text-white mb-5"
                 style={{
@@ -514,7 +514,6 @@ export default function HomePageSections() {
       <section className="py-28 px-6 bg-white">
         <div className="max-w-xl mx-auto text-center">
           <FadeIn>
-            <SectionEyebrow text="Take the first step" center />
             <h2
               className="text-[clamp(2.2rem,4vw,3.5rem)] leading-[1.06] tracking-[-0.02em] text-[#1e2a3a] mb-6"
               style={{
