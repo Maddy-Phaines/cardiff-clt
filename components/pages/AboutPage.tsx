@@ -1,20 +1,17 @@
 "use client";
 
+import clsx from "clsx";
 import { useState, useEffect, useRef, Fragment } from "react";
 import { useEntranceAnimation } from "@/hooks/useEntranceAnimation";
 import Image from "next/image";
 import Link from "next/link";
 
-import { SectionEyebrow } from "../ui/SectionEyebrow";
 import {
   Music4,
-  Flower2,
   Waves,
   HeartHandshakeIcon,
   Sparkles,
-  BriefcaseMedical,
   GraduationCap,
-  ScrollIcon,
   MoveDown,
   MoveRight,
 } from "lucide-react";
@@ -25,12 +22,8 @@ import { ButtonLink } from "../ui/ButtonLink";
 
 const classIcons: Record<string, LucideIcon> = {
   music: Music4,
-  qualification: GraduationCap,
-  diploma: ScrollIcon,
-  firstAid: BriefcaseMedical,
   sparkles: Sparkles,
   handshake: HeartHandshakeIcon,
-  flowers: Flower2,
   movement: Waves,
 };
 
@@ -49,24 +42,26 @@ interface TimelineEntry {
   year: string;
   title: string;
   detail: string;
+  // Highlights the entry Caroline is in now
+  current?: boolean;
 }
 
-interface Badge {
-  icon: string;
-  label: string;
-  sub: string;
+interface Qualification {
+  name: string;
+  detail: string;
 }
 
 interface Testimonial {
   quote: string;
   name: string;
   role: string;
+  imageSrc: string;
 }
 
 const stats: Stat[] = [
-  { value: 3, label: "Years teaching" },
+  { value: 4, label: "Years teaching" },
   { value: 100, label: "Students guided" },
-  { value: 4, label: "Festivals & events" },
+  { value: 5, label: "Festivals & events" },
   { value: 3, label: "Regular venues" },
 ];
 
@@ -92,41 +87,44 @@ const timeline: TimelineEntry[] = [
   {
     year: "2016",
     title: "First Biodanza class",
-    detail: "Attended a class in Bristol — a moment that changed everything.",
+    detail: "A class in Cardiff that changed everything.",
   },
   {
-    year: "2017–2019",
+    year: "2019–2022",
     title: "Facilitator training",
     detail:
-      "Three-year training programme with the International Biocentric Foundation (IBF).",
+      "Completed a three-year training programme at the IBFed Bristol School of Biodanza including observed practice.",
   },
   {
-    year: "2020",
+    year: "2023",
     title: "First weekly class",
-    detail:
-      "Launched regular classes in Cardiff. The community grew organically from week one.",
+    detail: "Launched regular weekly classes in Penarth.",
   },
   {
     year: "2024–present",
-    title: "Festivals & retreats",
+    current: true,
+    title: "Classes, courses & events in Pontypridd",
     detail:
-      "Now available for wellness festivals, corporate events, and residential retreats across the UK.",
+      "I now offer monthly classes as well as 5-week courses in Pontypridd. I am also available for wellness festivals, corporate events, community & charity workshops and residential retreats across the UK.",
   },
 ];
 
-const badges: Badge[] = [
+const qualifications: Qualification[] = [
   {
-    icon: "qualification",
-    label: "IBF Certified",
-    sub: "International Biocentric Foundation",
+    name: "IBFed certified facilitator",
+    detail:
+      "International Biodanza Federation, trained in the Rolando Toro System",
   },
   {
-    icon: "flowers",
-    label: "Biocentric Education",
-    sub: "Rolando Toro System",
+    name: "PGCE trained",
+    detail:
+      "11+ years teaching in further education and adult community learning",
   },
-  { icon: "firstAid", label: "First Aid Trained", sub: "Renewed annually" },
-  { icon: "diploma", label: "DBS Checked", sub: "Enhanced certificate" },
+];
+
+const checks = [
+  "First aid trained, renewed annually",
+  "Enhanced DBS certificate",
 ];
 
 const testimonials: Testimonial[] = [
@@ -134,19 +132,22 @@ const testimonials: Testimonial[] = [
     quote:
       "I always enjoy Caroline's Biodanza classes. She is a wonderful facilitator who makes everyone feel welcome and relaxed. I also love her music choices and the way she gently guides the participants through her sessions (which are always different). I always leave her classes feeling uplifted. It is a great class for beginners as well as those more experienced in Biodanza, and I would say to anyone thinking about trying Biodanza and attending Caroline's class to definitely give it a go!",
     name: "Nduka",
-    role: "Biodanza Customer",
+    imageSrc: "/images/participant-2-compressed.webp",
+    role: "Biodanza Participant",
   },
   {
     quote:
       "Caroline is a wonderful teacher who holds a beautiful nurturing space where you can play, explore and discover the many joys and benefits of dancing Biodanza. Her classes are lovely!",
     name: "Maris",
-    role: "Biodanza Customer",
+    imageSrc: "/images/participant-1-compressed.webp",
+    role: "Biodanza Participant",
   },
   {
     quote:
       "She encourages everyone to listen to their own needs in a non-judgmental space. She is a wonderful teacher whose gentle presence is felt immediately upon arrival and her classes are perfect for beginners and all abilities.",
     name: "Alys",
-    role: "Biodanza Customer",
+    imageSrc: "/images/participant-5-compressed.webp",
+    role: "Biodanza Participant",
   },
 ];
 
@@ -301,7 +302,7 @@ px-4 py-1.5 mb-6"
             </div>
 
             <div className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3 shadow-sm">
-              <span className="bg-rose-100 rounded-full w-10 h-10 flex items-center justify-center shrink-0">
+              <span className="bg-[#EEDAD1] rounded-full w-10 h-10 flex items-center justify-center shrink-0">
                 <GraduationCap size={18} className="text-stone-900" />
               </span>
               <span className="flex flex-col">
@@ -312,7 +313,7 @@ px-4 py-1.5 mb-6"
                 >
                   Certified Biodanza Facilitator{" "}
                   <span className="inline-flex bg-[#c4705a] h-1.5 w-1.5 rounded-full" />
-                  IBF Trained
+                  IBFed Trained
                 </span>
               </span>
             </div>
@@ -340,31 +341,35 @@ px-4 py-1.5 mb-6"
         className="max-w-275 mx-auto py-4 md:py-20 px-5 sm:px-8"
       >
         <div className="grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-12 lg:gap-16 items-center">
-          <div className="relative overflow-hidden aspect-3/4 rounded-3xl shadow-sm">
-            <Image
-              alt="Caroline with her diploma"
-              src="/images/caroline-diploma-celebration.webp"
-              fill
-              priority
-              sizes="(max-width: 768px) 100vw, 389px"
-              className="object-cover"
-            />
-            <div className="absolute bottom-5 left-5">
-              <span
-                className="inline-flex items-center gap-1.5 bg-white/82 backdrop-blur-sm rounded-full px-4 py-1.5 text-[0.7rem]
-                 font-medium text-[#1e2a3a]
-              "
-              >
+          <figure>
+            <div className="relative overflow-hidden aspect-3/4 rounded-3xl shadow-sm">
+              <Image
+                alt="Caroline with her diploma"
+                src="/images/caroline-diploma-celebration.webp"
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 389px"
+                className="object-cover"
+              />
+              <div className="absolute bottom-5 left-5">
                 <span
-                  className="inline-block w-1.5 h-1.5 bg-[#c4705a] rounded-full"
-                  aria-hidden="true"
-                />
-                Cardiff, 2024
-              </span>
+                  className="inline-flex items-center gap-1.5 bg-white/82 backdrop-blur-sm rounded-full px-4 py-1.5 text-[0.7rem]
+                   font-medium text-[#1e2a3a]
+                "
+                >
+                  <span
+                    className="inline-block w-1.5 h-1.5 bg-[#c4705a] rounded-full"
+                    aria-hidden="true"
+                  />
+                  Cardiff, 2025
+                </span>
+              </div>
             </div>
-          </div>
+            <figcaption className="mt-3 text-center text-[0.8125rem] italic text-[#1e2a3a]/70">
+              Graduation Ceremony at IBFed Bristol School of Biodanza, 2025
+            </figcaption>
+          </figure>
           <div>
-            <SectionEyebrow text="My story" className="mb-5" />
             <h2 className="text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.1] text-[#1e2a3a] mb-6">
               How I found Biodanza and what it has done for me
             </h2>
@@ -417,8 +422,6 @@ px-4 py-1.5 mb-6"
       >
         <div className="max-w-275 mx-auto">
           <div className="text-center mb-12">
-            <SectionEyebrow text="The practice" onDark center />
-
             <h2 className="text-[clamp(2rem,4vw,3.5rem)] text-white leading-1.1 mb-4">
               What is <span className="text-[#c4705a]">Biodanza?</span>
             </h2>
@@ -460,7 +463,6 @@ px-4 py-1.5 mb-6"
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           <div>
-            <SectionEyebrow text="Training & background" />
             <h2
               className="text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.1] text-[#1e2a3a] mb-8"
               style={{
@@ -470,44 +472,63 @@ px-4 py-1.5 mb-6"
             >
               A path built on lived experience
             </h2>
-            <ol className="flex flex-col" aria-label="Career timeline">
-              {timeline.map((entry, i) => {
-                return (
-                  <li key={entry.year} className="flex gap-5 pb-8 relative">
-                    {i < timeline.length - 1 && (
-                      <div
-                        className="absolute left-2.75 top-7 w-px h-[calc(100%-28px)] bg-stone-200"
-                        aria-hidden="true"
-                      />
+            <ol aria-label="Career timeline">
+              {timeline.map((entry, i) => (
+                <li
+                  key={entry.year}
+                  className={clsx(
+                    "relative isolate grid grid-cols-[3.25rem_1fr] gap-x-6 py-7",
+                    entry.current && "pr-12",
+                  )}
+                >
+                  {/* Highlight band: bleeds off the left edge of the screen */}
+                  {entry.current && (
+                    <span
+                      className="absolute inset-y-0 -left-[100vw] right-0 -z-10 rounded-r-full bg-[#eedad1]"
+                      aria-hidden="true"
+                    />
+                  )}
+                  {/* Dotted connector, drawn in two halves per entry so it
+                      stays above the highlight band */}
+                  {i > 0 && (
+                    <span
+                      className="absolute left-6.25 top-0 h-7 border-l-2 border-dotted border-[#1e2a3a]/50"
+                      aria-hidden="true"
+                    />
+                  )}
+                  {i < timeline.length - 1 && (
+                    <span
+                      className="absolute left-6.25 top-20 bottom-0 border-l-2 border-dotted border-[#1e2a3a]/50"
+                      aria-hidden="true"
+                    />
+                  )}
+                  <span
+                    className={clsx(
+                      "size-13 rounded-full shadow-[-5px_1px_0_#1e2a3a]",
+                      entry.current ? "bg-[#8fb5a0]" : "bg-[#c4705a]",
                     )}
-                    <div
-                      className="w-6 h-6 rounded-full bg-[#eedad1] border-2 border-[#c4705a] 
-                  flex items-center justify-center shrink-0 mt-0.5"
+                    aria-hidden="true"
+                  />
+                  <div>
+                    <p
+                      className="text-[1.5rem] leading-tight text-[#a4513e] mb-1"
+                      style={{ fontFamily: "'Cormorant Garamond', serif" }}
                     >
-                      <div
-                        className="w-2 h-2 rounded-full bg-[#c4705a]"
-                        aria-hidden="true"
-                      />
-                    </div>
-                    <div>
-                      <p className="text-[0.7rem] uppercase tracking-[0.12em] text-stone-600 mb-0.5">
-                        {entry.year}
-                      </p>
-                      <p className="text-[0.9rem] font-medium text-[#1e2a3a] mb-0.5">
-                        {entry.title}
-                      </p>
-                      <p className="text-[0.8125rem] text-stone-500 leading-normal">
-                        {entry.detail}
-                      </p>
-                    </div>
-                  </li>
-                );
-              })}
+                      {entry.year}
+                    </p>
+                    <p className="text-[1rem] font-medium text-[#1e2a3a] mb-1">
+                      {entry.title}
+                    </p>
+                    <p className="text-[0.875rem] text-stone-600 leading-relaxed">
+                      {entry.detail}
+                    </p>
+                  </div>
+                </li>
+              ))}
             </ol>
           </div>
 
           <div>
-            <SectionEyebrow text="Certifications" />
             <h2
               className="text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.1] text-[#1e2a3a] mb-8"
               style={{
@@ -517,25 +538,33 @@ px-4 py-1.5 mb-6"
             >
               Qualified &amp; accredited
             </h2>
-            <div className="grid grid-cols-2 gap-3">
-              {badges.map((badge) => {
-                const Icon = classIcons[badge.icon];
-                return (
-                  <div
-                    key={badge.label}
-                    className="bg-white border border-stone-200 rounded-2xl p-5 flex flex-col items-center text-center gap-2 hover:shadow-[0_4px_16px_rgba(30,42,58,0.08)] transition-shadow"
+            <dl className="border-t border-stone-200">
+              {qualifications.map((q) => (
+                <div key={q.name} className="py-6 border-b border-stone-200">
+                  <dt
+                    className="text-[1.625rem] leading-tight text-[#1e2a3a]"
+                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
                   >
-                    {Icon && <Icon size={20} className="text-[#c4705a]" />}
-                    <span className="text-[0.8125rem] font-medium text-[#1e2a3a]">
-                      {badge.label}
+                    {q.name}
+                  </dt>
+                  <dd className="mt-1 text-[0.9375rem] text-stone-600 leading-relaxed">
+                    {q.detail}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+            <ul className="mt-5 flex flex-wrap gap-x-2 gap-y-1 text-[0.875rem] text-stone-600">
+              {checks.map((check, i) => (
+                <li key={check}>
+                  {i > 0 && (
+                    <span className="mr-2 text-stone-400" aria-hidden="true">
+                      ·
                     </span>
-                    <span className="text-[0.65rem] text-stone-600 leading-snug">
-                      {badge.sub}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
+                  )}
+                  {check}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
@@ -543,7 +572,6 @@ px-4 py-1.5 mb-6"
         ref={testiRef as React.RefObject<HTMLElement | null>}
         className="max-w-275 mx-auto px-5 sm:px-8 mb-20"
       >
-        <SectionEyebrow text="Student voices" />
         <h2 className="text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.1] text-[#1e2a3a] mb-8">
           What people say
         </h2>
@@ -569,12 +597,14 @@ px-4 py-1.5 mb-6"
                 </p>
               </div>
               <footer className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-[#e8ddd0] flex items-end justify-center overflow-hidden flex-shrink-0">
-                  <div
-                    className="w-5 h-7 bg-stone-400/30 rounded-t-full"
-                    aria-hidden="true"
-                  />
-                </div>
+                {/* Decorative: the name is announced alongside it */}
+                <Image
+                  src={t.imageSrc}
+                  alt=""
+                  width={36}
+                  height={36}
+                  className="w-9 h-9 rounded-full object-cover object-center bg-[#e8ddd0] shrink-0"
+                />
                 <div>
                   <cite className="not-italic text-[0.8125rem] font-medium text-[#1e2a3a] block">
                     {t.name}
