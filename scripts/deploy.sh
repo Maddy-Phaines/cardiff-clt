@@ -13,13 +13,15 @@ cd "$(dirname "$0")/.."
 pnpm build
 
 # The AWS CLI on Windows doesn't know these MIME types, so upload them explicitly
-EXPLICIT=(--exclude "*.webp" --exclude "*.woff2")
+EXPLICIT=(--exclude "*.webp" --exclude "*.woff2" --exclude "*.svg")
 
 # Hashed build assets never change, so cache them for a year
 aws s3 sync out/_next/static "s3://$BUCKET/_next/static" --delete \
   "${EXPLICIT[@]}" --cache-control "$LONG_CACHE"
 aws s3 cp out/_next/static "s3://$BUCKET/_next/static" --recursive \
   --exclude "*" --include "*.woff2" --content-type font/woff2 --cache-control "$LONG_CACHE"
+aws s3 cp out/_next/static "s3://$BUCKET/_next/static" --recursive \
+  --exclude "*" --include "*.svg" --content-type image/svg+xml --cache-control "$LONG_CACHE"
 
 # Everything else (HTML, RSC payloads, images) is revalidated on each visit
 aws s3 sync out "s3://$BUCKET" --delete \
@@ -27,6 +29,9 @@ aws s3 sync out "s3://$BUCKET" --delete \
 aws s3 cp out "s3://$BUCKET" --recursive \
   --exclude "*" --include "*.webp" --exclude "_next/static/*" \
   --content-type image/webp --cache-control "$NO_CACHE"
+aws s3 cp out "s3://$BUCKET" --recursive \
+  --exclude "*" --include "*.svg" --exclude "_next/static/*" \
+  --content-type image/svg+xml --cache-control "$NO_CACHE"
 
 aws cloudfront create-invalidation \
   --distribution-id "$DISTRIBUTION_ID" \
