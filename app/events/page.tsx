@@ -65,8 +65,8 @@ const EventsPage = () => {
               className="text-[#1e2a3a]/70 text-[1.0625rem] leading-relaxed max-w-[52ch] mx-auto mb-12"
             >
               Workshops, retreats and special Biodanza gatherings are on the
-              way. In the meantime, you&apos;re warmly welcome to join one of
-              the regular weekly classes.
+              way. In the meantime, you&apos;re welcome to join one of the
+              regular monthly classes.
             </p>
 
             {/* Primary CTA */}

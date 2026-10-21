@@ -361,7 +361,7 @@ px-4 py-1.5 mb-6"
                     className="inline-block w-1.5 h-1.5 bg-[#c4705a] rounded-full"
                     aria-hidden="true"
                   />
-                  Cardiff, 2025
+                  Bristol, 2025
                 </span>
               </div>
             </div>
